@@ -1,32 +1,44 @@
 package bg.autosalon.entities;
 
-import jakarta.persistence.*;
 import bg.autosalon.enums.UserRole;
+import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
-public abstract class User {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String firstName;
+
     private String lastName;
 
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
     private String password;
 
     private String phone;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private UserRole role;
 
     public User() {}
+
+    public User(String firstName, String lastName, String email, String password, String phone, UserRole role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+    }
+
+    // ------------------ Getters & Setters ------------------
 
     public Long getId() {
         return id;

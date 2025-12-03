@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="bg.autosalon.controllers.LoginController"
+            prefWidth="600" prefHeight="400">
+
+    <children>
+        <VBox alignment="CENTER" spacing="18"
+              AnchorPane.topAnchor="0"
+              AnchorPane.bottomAnchor="0"
+              AnchorPane.leftAnchor="0"
+              AnchorPane.rightAnchor="0">
+
+
+            <VBox spacing="12" alignment="CENTER" maxWidth="260">
+
+                <Label text="AutoSalon Login"
+                       style="-fx-font-size: 26px; -fx-font-weight: bold;"/>
+
+                <TextField fx:id="emailField" promptText="Email" prefWidth="260"/>
+                <PasswordField fx:id="passwordField" promptText="Password" prefWidth="260"/>
+
+                <Button text="Login"
+                        onAction="#onLogin"
+                        prefWidth="200"
+                        style="-fx-background-color: #3498db;
+                               -fx-text-fill: white;
+                               -fx-font-size: 14px;
+                               -fx-background-radius: 6;"/>
+
+                <Label fx:id="errorLabel" textFill="red" style="-fx-font-size: 12px;"/>
+
+            </VBox>
+        </VBox>
+    </children>
+</AnchorPane>

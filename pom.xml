@@ -10,10 +10,14 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+
         <javafx.version>20</javafx.version>
+
+
         <hibernate.version>6.3.1.Final</hibernate.version>
     </properties>
 
@@ -86,7 +90,6 @@
     <build>
         <plugins>
 
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -103,7 +106,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>bg.autosalon.App</mainClass>
+                    <mainClass>bg.autosalon.Main</mainClass>
                 </configuration>
             </plugin>
 
