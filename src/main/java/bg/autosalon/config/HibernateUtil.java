@@ -2,8 +2,7 @@ package bg.autosalon.config;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class HibernateUtil {
 
