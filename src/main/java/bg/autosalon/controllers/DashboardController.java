@@ -1,33 +1,65 @@
 package bg.autosalon.controllers;
 
+import bg.autosalon.entities.User;
+import bg.autosalon.enums.UserRole;
 import bg.autosalon.utils.SceneLoader;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.Parent;
+import javafx.scene.control.Label;
 
 public class DashboardController {
 
-    @FXML
-    private AnchorPane contentPane;
+    private User loggedUser;
 
     @FXML
-    public void initialize() {
-        loadView("cars_list.fxml"); // по избор, може да е празно
+    private Label userLabel;
+
+    public void setUser(User user) {
+        this.loggedUser = user;
+
+        if (userLabel != null) {
+            userLabel.setText("Logged as: " + user.getEmail() + " (" + user.getRole() + ")");
+        }
+
+        applyRolePermissions();
     }
 
-    private void loadView(String fxml) {
-        Parent view = SceneLoader.loadNode(fxml);
-        if (view != null) {
-            contentPane.getChildren().setAll(view);
+
+    private void applyRolePermissions() {
+        if (loggedUser == null) return;
+
+        if (loggedUser.getRole() == UserRole.CLIENT) {
+
         }
     }
 
-    public void openCars() { loadView("cars_list.fxml"); }
-    public void openClients() { loadView("clients_list.fxml"); }
-    public void openEmployees() { loadView("employees_list.fxml"); }
-    public void openSales() { loadView("sales_list.fxml"); }
-    public void openService() { loadView("service_list.fxml"); }
 
+
+    @FXML
+    public void openCars() {
+        SceneLoader.openScene("cars_list.fxml");
+    }
+
+    @FXML
+    public void openClients() {
+        SceneLoader.openScene("clients_list.fxml");
+    }
+
+    @FXML
+    public void openEmployees() {
+        SceneLoader.openScene("employee_list.fxml");
+    }
+
+    @FXML
+    public void openSales() {
+        SceneLoader.openScene("sales_list.fxml");
+    }
+
+    @FXML
+    public void openService() {
+        SceneLoader.openScene("service_list.fxml");
+    }
+
+    @FXML
     public void logout() {
         SceneLoader.openScene("login.fxml");
     }

@@ -3,39 +3,45 @@ package bg.autosalon.utils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
-public class SceneLoader {
+public final class SceneLoader {
 
     private static Stage primaryStage;
+
+    private SceneLoader() {}
 
     public static void setStage(Stage stage) {
         primaryStage = stage;
     }
 
-    // Зареждане на цяла сцена
+
     public static void openScene(String fxmlName) {
         try {
-            String fullPath = "/bg/autosalon/views/" + fxmlName;
-            Parent root = FXMLLoader.load(SceneLoader.class.getResource(fullPath));
+            FXMLLoader loader = new FXMLLoader(
+                    SceneLoader.class.getResource("/bg/autosalon/views/" + fxmlName)
+            );
+            Parent root = loader.load();
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public static Parent loadNode(String fxmlName) {
+    public static Object openSceneWithController(String fxmlName) {
         try {
-            String fullPath = "/bg/autosalon/views/" + fxmlName;
-            return FXMLLoader.load(SceneLoader.class.getResource(fullPath));
-        } catch (IOException e) {
+            FXMLLoader loader = new FXMLLoader(
+                    SceneLoader.class.getResource("/bg/autosalon/views/" + fxmlName)
+            );
+            Parent root = loader.load();
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+            return loader.getController();
+        } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }

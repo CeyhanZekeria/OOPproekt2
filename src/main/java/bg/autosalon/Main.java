@@ -9,8 +9,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         SceneLoader.setStage(primaryStage);
-        SceneLoader.openScene("login.fxml");
+        SceneLoader.openScene("register.fxml");
     }
+
 
     public static void main(String[] args) {
         launch();
