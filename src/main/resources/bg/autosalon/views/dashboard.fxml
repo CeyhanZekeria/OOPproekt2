@@ -38,20 +38,19 @@
 
             <VBox spacing="5" style="-fx-padding: 10;">
 
-                <Button text="Автомобили" onAction="#openCars" maxWidth="Infinity" alignment="BASELINE_LEFT"
-                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;">
-                </Button>
-
-                <Button text="Клиенти" onAction="#openClients" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnCars" text="Автомобили" onAction="#openCars" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
 
-                <Button text="Служители" onAction="#openEmployees" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnClients" text="Клиенти" onAction="#openClients" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
 
-                <Button text="Продажби" onAction="#openSales" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnEmployees" text="Служители" onAction="#openEmployees" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
 
-                <Button text="Сервиз" onAction="#openService" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnSales" text="Продажби" onAction="#openSales" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
+
+                <Button fx:id="btnService" text="Сервиз" onAction="#openService" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
             </VBox>
 

@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefWidth="600" prefHeight="400">
-</AnchorPane>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bg.autosalon.controllers.SaleListController"
+      spacing="20" style="-fx-padding: 20;">
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="История на продажбите" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+ Нова Продажба" style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
+    </HBox>
+
+    <TableView fx:id="salesTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCar" text="Автомобил" prefWidth="150"/>
+            <TableColumn fx:id="colClient" text="Клиент" prefWidth="150"/>
+            <TableColumn fx:id="colEmployee" text="Продавач" prefWidth="150"/>
+            <TableColumn fx:id="colDate" text="Дата" prefWidth="100"/>
+            <TableColumn fx:id="colPrice" text="Крайна Цена" prefWidth="100"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+</VBox>

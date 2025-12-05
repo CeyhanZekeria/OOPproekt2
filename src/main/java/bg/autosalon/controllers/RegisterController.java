@@ -1,5 +1,6 @@
 package bg.autosalon.controllers;
 
+import bg.autosalon.entities.Client;
 import bg.autosalon.entities.User;
 import bg.autosalon.enums.UserRole;
 import bg.autosalon.services.UserService;
@@ -21,15 +22,22 @@ public class RegisterController {
 
     @FXML
     public void onRegister() {
-        User user = new User();
-        user.setFirstName(firstNameField.getText());
-        user.setLastName(lastNameField.getText());
-        user.setEmail(emailField.getText());
-        user.setPassword(passwordField.getText());
-        user.setPhone(phoneField.getText());
-        user.setRole(UserRole.CLIENT);
+        Client client = new Client();
 
-        boolean ok = userService.register(user);
+        client.setFirstName(firstNameField.getText());
+        client.setLastName(lastNameField.getText());
+        client.setEmail(emailField.getText());
+        client.setPassword(passwordField.getText());
+        client.setPhone(phoneField.getText());
+
+
+        client.setRole(UserRole.CLIENT);
+
+
+        client.setLoyaltyPoints(0);
+
+
+        boolean ok = userService.register(client);
 
         if (!ok) {
             errorLabel.setText("Email already in use!");
