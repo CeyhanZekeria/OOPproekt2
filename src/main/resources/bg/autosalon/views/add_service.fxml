@@ -2,30 +2,63 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.geometry.Insets?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="bg.autosalon.controllers.AddServiceController"
-      spacing="15" alignment="CENTER"
-      style="-fx-padding: 30; -fx-background-color: white;">
+      spacing="20" alignment="TOP_CENTER"
+      prefWidth="500" prefHeight="600"
+      style="-fx-padding: 40; -fx-background-color: white;">
 
-    <Label text="Записване за Сервиз" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    <Label text="Записване за Сервиз"
+           style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+        <effect>
+            <DropShadow color="#00000033" radius="5" offsetY="2"/>
+        </effect>
+    </Label>
 
-    <ComboBox fx:id="carCombo" promptText="-- Избери автомобил --" maxWidth="Infinity" prefWidth="300"/>
+    <Separator style="-fx-background-color: #ecf0f1;"/>
 
-    <HBox spacing="10">
-        <ComboBox fx:id="typeCombo" promptText="-- Тип услуга --" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-        <DatePicker fx:id="datePicker" promptText="Дата" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-    </HBox>
+    <VBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Автомобил" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <ComboBox fx:id="carCombo" promptText="-- Избери автомобил --" maxWidth="Infinity"
+                  style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
+    </VBox>
 
-    <Label text="Описание на проблема / дейността:" style="-fx-font-size: 12px; -fx-text-fill: gray;" maxWidth="Infinity"/>
-    <TextArea fx:id="descArea" promptText="Напр. Смяна на масло..." prefHeight="100" wrapText="true"/>
+    <VBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Детайли за услугата" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <HBox spacing="15">
+            <ComboBox fx:id="typeCombo" promptText="-- Тип услуга --" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                      style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
 
-    <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+            <DatePicker fx:id="datePicker" promptText="Дата" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                        style="-fx-background-radius: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+        </HBox>
+    </VBox>
+
+    <VBox spacing="5" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+        <Label text="Описание на проблема / дейността" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <TextArea fx:id="descArea" promptText="Опишете проблема или необходимите ремонти..."
+                  wrapText="true" VBox.vgrow="ALWAYS"
+                  style="-fx-background-radius: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+    </VBox>
+
+    <Label fx:id="errorLabel" textFill="#e74c3c" wrapText="true" style="-fx-font-size: 13px;"/>
+
+    <Separator style="-fx-background-color: #ecf0f1;"/>
+
+    <HBox spacing="20" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
         <Button text="Запиши" onAction="#onSave"
-                style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 100;"/>
+                style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 150; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;">
+            <effect>
+                <DropShadow color="#00000022" radius="3" offsetY="2"/>
+            </effect>
+        </Button>
+
         <Button text="Отказ" onAction="#onCancel"
-                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-pref-width: 100;"/>
+                style="-fx-background-color: #ecf0f1; -fx-text-fill: #7f8c8d; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 150; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;"/>
     </HBox>
 
 </VBox>

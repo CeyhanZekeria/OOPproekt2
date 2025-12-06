@@ -2,42 +2,75 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.geometry.Insets?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="bg.autosalon.controllers.AddSaleController"
-      spacing="15" alignment="CENTER"
-      style="-fx-padding: 30; -fx-background-color: white;">
+      spacing="20" alignment="TOP_CENTER"
+      prefWidth="500" prefHeight="600"
+      style="-fx-padding: 40; -fx-background-color: white;">
 
-    <Label text="Нова Продажба" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    <Label text="Нова Продажба"
+           style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+        <effect>
+            <DropShadow color="#00000033" radius="5" offsetY="2"/>
+        </effect>
+    </Label>
 
-    <VBox spacing="5" alignment="CENTER_LEFT" maxWidth="Infinity">
-        <Label text="Избери Автомобил (Само налични):" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
-        <ComboBox fx:id="carCombo" promptText="-- Избери кола --" maxWidth="Infinity" prefWidth="300"/>
+    <Separator style="-fx-background-color: #ecf0f1;"/>
+
+    <VBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Автомобил" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <ComboBox fx:id="carCombo" promptText="-- Избери автомобил (Само налични) --"
+                  maxWidth="Infinity"
+                  style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
     </VBox>
 
-    <VBox spacing="5" alignment="CENTER_LEFT" maxWidth="Infinity">
-        <Label text="Избери Клиент:" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
-        <ComboBox fx:id="clientCombo" promptText="-- Избери клиент --" maxWidth="Infinity" prefWidth="300"/>
+    <VBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Участници в сделката" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+
+        <VBox spacing="5">
+            <Label text="Клиент:" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+            <ComboBox fx:id="clientCombo" promptText="-- Избери клиент --" maxWidth="Infinity"
+                      style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Продавач:" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+            <ComboBox fx:id="employeeCombo" promptText="-- Избери служител --" maxWidth="Infinity"
+                      style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
+        </VBox>
     </VBox>
 
-    <VBox spacing="5" alignment="CENTER_LEFT" maxWidth="Infinity">
-        <Label text="Продавач (Служител):" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
-        <ComboBox fx:id="employeeCombo" promptText="-- Избери служител --" maxWidth="Infinity" prefWidth="300"/>
+    <VBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Финансови условия" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <HBox spacing="15">
+            <DatePicker fx:id="datePicker" promptText="Дата на продажба" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                        style="-fx-background-radius: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+
+            <TextField fx:id="priceField" promptText="Крайна цена (лв.)" HBox.hgrow="ALWAYS"
+                       style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+        </HBox>
     </VBox>
 
-    <HBox spacing="10">
-        <DatePicker fx:id="datePicker" promptText="Дата" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-        <TextField fx:id="priceField" promptText="Крайна цена (лв.)" HBox.hgrow="ALWAYS"/>
-    </HBox>
+    <Region VBox.vgrow="ALWAYS"/>
 
-    <Label fx:id="errorLabel" textFill="red" wrapText="true"/>
+    <Label fx:id="errorLabel" textFill="#e74c3c" wrapText="true" style="-fx-font-size: 13px;"/>
 
-    <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+    <Separator style="-fx-background-color: #ecf0f1;"/>
+
+    <HBox spacing="20" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
         <Button text="Финализирай" onAction="#onSave"
-                style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 120;"/>
+                style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 150; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;">
+            <effect>
+                <DropShadow color="#00000022" radius="3" offsetY="2"/>
+            </effect>
+        </Button>
+
         <Button text="Отказ" onAction="#onCancel"
-                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-pref-width: 100;"/>
+                style="-fx-background-color: #ecf0f1; -fx-text-fill: #7f8c8d; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 150; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;"/>
     </HBox>
 
 </VBox>
