@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bg.autosalon.controllers.AddServiceController"
+      spacing="15" alignment="CENTER"
+      style="-fx-padding: 30; -fx-background-color: white;">
+
+    <Label text="Записване за Сервиз" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <ComboBox fx:id="carCombo" promptText="-- Избери автомобил --" maxWidth="Infinity" prefWidth="300"/>
+
+    <HBox spacing="10">
+        <ComboBox fx:id="typeCombo" promptText="-- Тип услуга --" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        <DatePicker fx:id="datePicker" promptText="Дата" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+    </HBox>
+
+    <Label text="Описание на проблема / дейността:" style="-fx-font-size: 12px; -fx-text-fill: gray;" maxWidth="Infinity"/>
+    <TextArea fx:id="descArea" promptText="Напр. Смяна на масло..." prefHeight="100" wrapText="true"/>
+
+    <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+        <Button text="Запиши" onAction="#onSave"
+                style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 100;"/>
+        <Button text="Отказ" onAction="#onCancel"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-pref-width: 100;"/>
+    </HBox>
+
+</VBox>

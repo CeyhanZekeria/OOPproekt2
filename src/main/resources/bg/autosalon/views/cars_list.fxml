@@ -12,27 +12,27 @@
       style="-fx-padding: 20; -fx-background-color: transparent;">
 
     <HBox alignment="CENTER_LEFT" spacing="15">
-        <Label text="Налични Автомобили"
+        <Label text="Available vehicles"
                style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
 
         <Region HBox.hgrow="ALWAYS"/>
 
-        <Button text="+ Добави Кола" onAction="#onAddCar"
+        <Button text="+ Add vehicle" onAction="#onAddCar"
                 style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 15; -fx-background-radius: 5;"/>
 
-        <Button text="Изтрий избраните" onAction="#onDeleteCar"
+        <Button text="Delete vehicle" onAction="#onDeleteCar"
                 style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 8 15; -fx-background-radius: 5;"/>
     </HBox>
 
     <TableView fx:id="carsTable" VBox.vgrow="ALWAYS" style="-fx-base: #ecf0f1; -fx-control-inner-background: white;">
         <columns>
-            <TableColumn fx:id="colBrand" text="Марка" prefWidth="120"/>
-            <TableColumn fx:id="colModel" text="Модел" prefWidth="120"/>
+            <TableColumn fx:id="colBrand" text="Brand" prefWidth="120"/>
+            <TableColumn fx:id="colModel" text="Model" prefWidth="120"/>
             <TableColumn fx:id="colVin" text="VIN" prefWidth="150"/>
-            <TableColumn fx:id="colYear" text="Година" prefWidth="80"/>
-            <TableColumn fx:id="colFuel" text="Гориво" prefWidth="100"/>
-            <TableColumn fx:id="colPrice" text="Цена (лв.)" prefWidth="100"/>
-            <TableColumn fx:id="colStatus" text="Статус" prefWidth="100"/>
+            <TableColumn fx:id="colYear" text="Year" prefWidth="80"/>
+            <TableColumn fx:id="colFuel" text="Fuel" prefWidth="100"/>
+            <TableColumn fx:id="colPrice" text="Price (BGN.)" prefWidth="100"/>
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
         </columns>
 
         <columnResizePolicy>

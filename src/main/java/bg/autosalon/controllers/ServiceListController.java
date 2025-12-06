@@ -5,8 +5,15 @@ import bg.autosalon.services.ServiceRecordService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ServiceListController {
 
@@ -32,5 +39,22 @@ public class ServiceListController {
 
     private void loadRecords() {
         serviceTable.setItems(FXCollections.observableArrayList(serviceService.getAllRecords()));
+    }
+
+    @FXML
+    public void onAddService() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/add_service.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Записване за сервиз");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+            loadRecords();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

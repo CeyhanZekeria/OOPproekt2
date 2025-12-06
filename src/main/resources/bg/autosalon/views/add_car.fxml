@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bg.autosalon.controllers.AddCarController"
+      spacing="15" alignment="CENTER"
+      style="-fx-padding: 30; -fx-background-color: white;">
+
+    <Label text="Добави Автомобил" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <HBox spacing="10">
+        <TextField fx:id="brandField" promptText="Марка (напр. BMW)" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="modelField" promptText="Модел (напр. X5)" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <TextField fx:id="vinField" promptText="VIN Номер (Уникален)"/>
+
+    <HBox spacing="10">
+        <TextField fx:id="yearField" promptText="Година (напр. 2020)" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="mileageField" promptText="Пробег (км)" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <TextField fx:id="priceField" promptText="Цена (лв.)"/>
+
+    <VBox spacing="5" alignment="CENTER_LEFT" maxWidth="Infinity">
+        <Label text="Тип гориво:" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+        <ComboBox fx:id="fuelComboBox" promptText="-- Избери --" maxWidth="Infinity"/>
+    </VBox>
+
+    <Label fx:id="errorLabel" textFill="red" wrapText="true"/>
+
+    <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+        <Button text="Запази" onAction="#onSave"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 100;"/>
+        <Button text="Отказ" onAction="#onCancel"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-pref-width: 100;"/>
+    </HBox>
+
+</VBox>

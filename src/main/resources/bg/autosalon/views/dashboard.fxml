@@ -38,19 +38,19 @@
 
             <VBox spacing="5" style="-fx-padding: 10;">
 
-                <Button fx:id="btnCars" text="Автомобили" onAction="#openCars" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnCars" text="Vehicles" onAction="#openCars" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
 
-                <Button fx:id="btnClients" text="Клиенти" onAction="#openClients" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnClients" text="Clients" onAction="#openClients" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
 
-                <Button fx:id="btnEmployees" text="Служители" onAction="#openEmployees" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnEmployees" text="Employees" onAction="#openEmployees" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
 
-                <Button fx:id="btnSales" text="Продажби" onAction="#openSales" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnSales" text="Sales" onAction="#openSales" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
 
-                <Button fx:id="btnService" text="Сервиз" onAction="#openService" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnService" text="Service" onAction="#openService" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
             </VBox>
 
@@ -58,7 +58,7 @@
 
             <Separator style="-fx-background-color: #34495e; -fx-opacity: 0.3;"/>
 
-            <Button text="Изход" onAction="#logout" maxWidth="Infinity"
+            <Button text="Exit" onAction="#logout" maxWidth="Infinity"
                     style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 15;"
                     VBox.vgrow="NEVER"/>
         </VBox>
@@ -66,7 +66,7 @@
 
     <center>
         <StackPane fx:id="contentPane" style="-fx-padding: 20;">
-            <Label text="Добре дошли в системата!" style="-fx-font-size: 24px; -fx-text-fill: #7f8c8d;"/>
+            <Label text="Welcome!" style="-fx-font-size: 24px; -fx-text-fill: #7f8c8d;"/>
         </StackPane>
     </center>
 

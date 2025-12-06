@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bg.autosalon.controllers.AddSaleController"
+      spacing="15" alignment="CENTER"
+      style="-fx-padding: 30; -fx-background-color: white;">
+
+    <Label text="Нова Продажба" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <VBox spacing="5" alignment="CENTER_LEFT" maxWidth="Infinity">
+        <Label text="Избери Автомобил (Само налични):" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+        <ComboBox fx:id="carCombo" promptText="-- Избери кола --" maxWidth="Infinity" prefWidth="300"/>
+    </VBox>
+
+    <VBox spacing="5" alignment="CENTER_LEFT" maxWidth="Infinity">
+        <Label text="Избери Клиент:" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+        <ComboBox fx:id="clientCombo" promptText="-- Избери клиент --" maxWidth="Infinity" prefWidth="300"/>
+    </VBox>
+
+    <VBox spacing="5" alignment="CENTER_LEFT" maxWidth="Infinity">
+        <Label text="Продавач (Служител):" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+        <ComboBox fx:id="employeeCombo" promptText="-- Избери служител --" maxWidth="Infinity" prefWidth="300"/>
+    </VBox>
+
+    <HBox spacing="10">
+        <DatePicker fx:id="datePicker" promptText="Дата" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        <TextField fx:id="priceField" promptText="Крайна цена (лв.)" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <Label fx:id="errorLabel" textFill="red" wrapText="true"/>
+
+    <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+        <Button text="Финализирай" onAction="#onSave"
+                style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 120;"/>
+        <Button text="Отказ" onAction="#onCancel"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-pref-width: 100;"/>
+    </HBox>
+
+</VBox>

@@ -4,9 +4,16 @@ import bg.autosalon.entities.Client;
 import bg.autosalon.services.ClientService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ClientListController {
 
@@ -28,6 +35,22 @@ public class ClientListController {
         colPoints.setCellValueFactory(new PropertyValueFactory<>("loyaltyPoints"));
 
         loadClients();
+    }
+
+    @FXML
+    public void onAddClient() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/add_client.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Add client");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            loadClients();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadClients() {
