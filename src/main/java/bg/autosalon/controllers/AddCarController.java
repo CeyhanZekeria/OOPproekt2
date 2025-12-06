@@ -25,16 +25,15 @@ public class AddCarController {
 
     @FXML
     public void initialize() {
-        // Пълним падащото меню с видовете гориво от Enum-а
+
         fuelComboBox.getItems().setAll(FuelType.values());
-        // Избираме първото по подразбиране (по желание)
-        // fuelComboBox.getSelectionModel().selectFirst();
+
     }
 
     @FXML
     public void onSave() {
         try {
-            // 1. Проверка за празни текстови полета
+
             String brand = brandField.getText().trim();
             String model = modelField.getText().trim();
             String vin = vinField.getText().trim();
@@ -49,13 +48,13 @@ public class AddCarController {
                 return;
             }
 
-            // 2. Валидация на числа (ще хвърли грешка, ако са текст)
+
             int year = Integer.parseInt(yearField.getText().trim());
             int mileage = Integer.parseInt(mileageField.getText().trim());
             double price = Double.parseDouble(priceField.getText().trim());
             FuelType fuel = fuelComboBox.getValue();
 
-            // 3. Създаване на обекта
+
             Car car = new Car();
             car.setBrand(brand);
             car.setModel(model);
@@ -65,13 +64,13 @@ public class AddCarController {
             car.setPrice(price);
             car.setFuel(fuel);
 
-            // Новите коли винаги са "Налични"
+
             car.setStatus(CarStatus.AVAILABLE);
 
-            // 4. Запис в базата
+
             carService.addCar(car);
 
-            // 5. Затваряне
+
             closeWindow();
 
         } catch (NumberFormatException e) {

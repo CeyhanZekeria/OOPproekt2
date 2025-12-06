@@ -23,14 +23,14 @@ public class AddEmployeeController {
 
     @FXML
     public void onSave() {
-        // 1. Валидация
+
         if (emailField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             errorLabel.setText("Имейлът и паролата са задължителни!");
             return;
         }
 
         try {
-            // 2. Създаване на обект Employee
+
             Employee employee = new Employee();
             employee.setFirstName(firstNameField.getText());
             employee.setLastName(lastNameField.getText());
@@ -38,10 +38,10 @@ public class AddEmployeeController {
             employee.setPhone(phoneField.getText());
             employee.setPassword(passwordField.getText());
 
-            // Задаваме роля по подразбиране
+
             employee.setRole(UserRole.SELLER);
 
-            // 3. Обработка на заплатата
+
             if (!salaryField.getText().isEmpty()) {
                 double salary = Double.parseDouble(salaryField.getText());
                 employee.setSalary(salary);
@@ -49,10 +49,10 @@ public class AddEmployeeController {
                 employee.setSalary(0.0);
             }
 
-            // 4. Запис в базата
+
             employeeService.addEmployee(employee);
 
-            // 5. Затваряне
+
             closeWindow();
 
         } catch (NumberFormatException e) {
