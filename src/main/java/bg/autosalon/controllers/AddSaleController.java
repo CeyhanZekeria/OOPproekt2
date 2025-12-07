@@ -29,18 +29,15 @@ public class AddSaleController {
 
     @FXML
     public void initialize() {
-
         List<Car> availableCars = carService.getAllCars().stream()
                 .filter(c -> c.getStatus() == CarStatus.AVAILABLE)
                 .collect(Collectors.toList());
         carCombo.setItems(FXCollections.observableArrayList(availableCars));
 
-
         clientCombo.setItems(FXCollections.observableArrayList(clientService.getAllClients()));
         employeeCombo.setItems(FXCollections.observableArrayList(employeeService.getAllEmployees()));
 
         datePicker.setValue(LocalDate.now());
-
 
         setupComboDisplay();
     }
@@ -49,10 +46,9 @@ public class AddSaleController {
     public void onSave() {
         try {
             if (carCombo.getValue() == null || clientCombo.getValue() == null || employeeCombo.getValue() == null) {
-                errorLabel.setText("Всички полета са задължителни!");
+                errorLabel.setText("All fields are required!");
                 return;
             }
-
 
             Sale sale = new Sale();
             sale.setCar(carCombo.getValue());
@@ -69,7 +65,7 @@ public class AddSaleController {
 
             closeWindow();
         } catch (Exception e) {
-            errorLabel.setText("Грешка: " + e.getMessage());
+            errorLabel.setText("Error: " + e.getMessage());
         }
     }
 

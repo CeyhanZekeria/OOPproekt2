@@ -12,7 +12,7 @@
       prefWidth="500" prefHeight="600"
       style="-fx-padding: 40; -fx-background-color: white;">
 
-    <Label text="Записване за Сервиз"
+    <Label text="New Service Appointment"
            style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
         <effect>
             <DropShadow color="#00000033" radius="5" offsetY="2"/>
@@ -22,25 +22,25 @@
     <Separator style="-fx-background-color: #ecf0f1;"/>
 
     <VBox spacing="5" alignment="CENTER_LEFT">
-        <Label text="Автомобил" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
-        <ComboBox fx:id="carCombo" promptText="-- Избери автомобил --" maxWidth="Infinity"
+        <Label text="Vehicle" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <ComboBox fx:id="carCombo" promptText="-- Select Car --" maxWidth="Infinity"
                   style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
     </VBox>
 
     <VBox spacing="5" alignment="CENTER_LEFT">
-        <Label text="Детайли за услугата" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <Label text="Service Details" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
         <HBox spacing="15">
-            <ComboBox fx:id="typeCombo" promptText="-- Тип услуга --" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+            <ComboBox fx:id="typeCombo" promptText="-- Service Type --" HBox.hgrow="ALWAYS" maxWidth="Infinity"
                       style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
 
-            <DatePicker fx:id="datePicker" promptText="Дата" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+            <DatePicker fx:id="datePicker" promptText="Date" HBox.hgrow="ALWAYS" maxWidth="Infinity"
                         style="-fx-background-radius: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
         </HBox>
     </VBox>
 
     <VBox spacing="5" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-        <Label text="Описание на проблема / дейността" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
-        <TextArea fx:id="descArea" promptText="Опишете проблема или необходимите ремонти..."
+        <Label text="Description of Issue / Activity" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <TextArea fx:id="descArea" promptText="Describe the problem or necessary repairs..."
                   wrapText="true" VBox.vgrow="ALWAYS"
                   style="-fx-background-radius: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
     </VBox>
@@ -50,14 +50,14 @@
     <Separator style="-fx-background-color: #ecf0f1;"/>
 
     <HBox spacing="20" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
-        <Button text="Запиши" onAction="#onSave"
+        <Button text="Save" onAction="#onSave"
                 style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 150; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;">
             <effect>
                 <DropShadow color="#00000022" radius="3" offsetY="2"/>
             </effect>
         </Button>
 
-        <Button text="Отказ" onAction="#onCancel"
+        <Button text="Cancel" onAction="#onCancel"
                 style="-fx-background-color: #ecf0f1; -fx-text-fill: #7f8c8d; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 150; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;"/>
     </HBox>
 

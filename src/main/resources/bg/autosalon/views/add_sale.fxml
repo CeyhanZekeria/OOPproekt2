@@ -12,7 +12,7 @@
       prefWidth="500" prefHeight="600"
       style="-fx-padding: 40; -fx-background-color: white;">
 
-    <Label text="Нова Продажба"
+    <Label text="New Sale"
            style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
         <effect>
             <DropShadow color="#00000033" radius="5" offsetY="2"/>
@@ -22,35 +22,35 @@
     <Separator style="-fx-background-color: #ecf0f1;"/>
 
     <VBox spacing="5" alignment="CENTER_LEFT">
-        <Label text="Автомобил" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
-        <ComboBox fx:id="carCombo" promptText="-- Избери автомобил (Само налични) --"
+        <Label text="Car" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <ComboBox fx:id="carCombo" promptText="-- Select Car (Available only) --"
                   maxWidth="Infinity"
                   style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
     </VBox>
 
     <VBox spacing="15" alignment="CENTER_LEFT">
-        <Label text="Участници в сделката" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <Label text="Transaction Participants" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
 
         <VBox spacing="5">
-            <Label text="Клиент:" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
-            <ComboBox fx:id="clientCombo" promptText="-- Избери клиент --" maxWidth="Infinity"
+            <Label text="Client:" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+            <ComboBox fx:id="clientCombo" promptText="-- Select Client --" maxWidth="Infinity"
                       style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
         </VBox>
 
         <VBox spacing="5">
-            <Label text="Продавач:" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
-            <ComboBox fx:id="employeeCombo" promptText="-- Избери служител --" maxWidth="Infinity"
+            <Label text="Seller:" style="-fx-font-size: 12px; -fx-text-fill: gray;"/>
+            <ComboBox fx:id="employeeCombo" promptText="-- Select Seller --" maxWidth="Infinity"
                       style="-fx-background-radius: 5; -fx-padding: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-font-size: 13px;"/>
         </VBox>
     </VBox>
 
     <VBox spacing="5" alignment="CENTER_LEFT">
-        <Label text="Финансови условия" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <Label text="Financial Details" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
         <HBox spacing="15">
-            <DatePicker fx:id="datePicker" promptText="Дата на продажба" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+            <DatePicker fx:id="datePicker" promptText="Sale Date" HBox.hgrow="ALWAYS" maxWidth="Infinity"
                         style="-fx-background-radius: 5; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
 
-            <TextField fx:id="priceField" promptText="Крайна цена (лв.)" HBox.hgrow="ALWAYS"
+            <TextField fx:id="priceField" promptText="Final Price (BGN)" HBox.hgrow="ALWAYS"
                        style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
         </HBox>
     </VBox>
@@ -62,14 +62,14 @@
     <Separator style="-fx-background-color: #ecf0f1;"/>
 
     <HBox spacing="20" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
-        <Button text="Финализирай" onAction="#onSave"
+        <Button text="Finalize" onAction="#onSave"
                 style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 150; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;">
             <effect>
                 <DropShadow color="#00000022" radius="3" offsetY="2"/>
             </effect>
         </Button>
 
-        <Button text="Отказ" onAction="#onCancel"
+        <Button text="Cancel" onAction="#onCancel"
                 style="-fx-background-color: #ecf0f1; -fx-text-fill: #7f8c8d; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 150; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;"/>
     </HBox>
 

@@ -28,7 +28,6 @@ public class SaleListController {
 
     @FXML
     public void initialize() {
-
         colCar.setCellValueFactory(cell -> new SimpleStringProperty(
                 cell.getValue().getCar().getBrand() + " " + cell.getValue().getCar().getModel()
         ));
@@ -44,7 +43,7 @@ public class SaleListController {
         colDate.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getSaleDate().toString()));
 
         colPrice.setCellValueFactory(cell -> new SimpleStringProperty(
-                String.format("%.2f лв.", cell.getValue().getFinalPrice())
+                String.format("%.2f BGN", cell.getValue().getFinalPrice())
         ));
 
         loadSales();
@@ -60,7 +59,7 @@ public class SaleListController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/add_sale.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
-            stage.setTitle("Нова продажба");
+            stage.setTitle("New Sale");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();

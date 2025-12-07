@@ -47,7 +47,7 @@ public class ServiceListController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/add_service.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
-            stage.setTitle("Записване за сервиз");
+            stage.setTitle("New Service Appointment");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();

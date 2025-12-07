@@ -25,35 +25,30 @@ public class AddCarController {
 
     @FXML
     public void initialize() {
-
         fuelComboBox.getItems().setAll(FuelType.values());
-
     }
 
     @FXML
     public void onSave() {
         try {
-
             String brand = brandField.getText().trim();
             String model = modelField.getText().trim();
             String vin = vinField.getText().trim();
 
             if (brand.isEmpty() || model.isEmpty() || vin.isEmpty()) {
-                errorLabel.setText("Марка, Модел и VIN са задължителни!");
+                errorLabel.setText("Brand, Model, and VIN are required!");
                 return;
             }
 
             if (fuelComboBox.getValue() == null) {
-                errorLabel.setText("Моля изберете тип гориво!");
+                errorLabel.setText("Please select a fuel type!");
                 return;
             }
-
 
             int year = Integer.parseInt(yearField.getText().trim());
             int mileage = Integer.parseInt(mileageField.getText().trim());
             double price = Double.parseDouble(priceField.getText().trim());
             FuelType fuel = fuelComboBox.getValue();
-
 
             Car car = new Car();
             car.setBrand(brand);
@@ -64,19 +59,16 @@ public class AddCarController {
             car.setPrice(price);
             car.setFuel(fuel);
 
-
             car.setStatus(CarStatus.AVAILABLE);
 
-
             carService.addCar(car);
-
 
             closeWindow();
 
         } catch (NumberFormatException e) {
-            errorLabel.setText("Година, Пробег и Цена трябва да са валидни числа!");
+            errorLabel.setText("Year, Mileage, and Price must be valid numbers!");
         } catch (Exception e) {
-            errorLabel.setText("Грешка при запис: " + e.getMessage());
+            errorLabel.setText("Error saving: " + e.getMessage());
             e.printStackTrace();
         }
     }

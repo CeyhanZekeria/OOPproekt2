@@ -23,14 +23,12 @@ public class AddEmployeeController {
 
     @FXML
     public void onSave() {
-
         if (emailField.getText().isEmpty() || passwordField.getText().isEmpty()) {
-            errorLabel.setText("Имейлът и паролата са задължителни!");
+            errorLabel.setText("Email and password are required!");
             return;
         }
 
         try {
-
             Employee employee = new Employee();
             employee.setFirstName(firstNameField.getText());
             employee.setLastName(lastNameField.getText());
@@ -38,9 +36,7 @@ public class AddEmployeeController {
             employee.setPhone(phoneField.getText());
             employee.setPassword(passwordField.getText());
 
-
             employee.setRole(UserRole.SELLER);
-
 
             if (!salaryField.getText().isEmpty()) {
                 double salary = Double.parseDouble(salaryField.getText());
@@ -49,16 +45,14 @@ public class AddEmployeeController {
                 employee.setSalary(0.0);
             }
 
-
             employeeService.addEmployee(employee);
-
 
             closeWindow();
 
         } catch (NumberFormatException e) {
-            errorLabel.setText("Заплатата трябва да е число!");
+            errorLabel.setText("Salary must be a valid number!");
         } catch (Exception e) {
-            errorLabel.setText("Грешка при запис: " + e.getMessage());
+            errorLabel.setText("Error saving: " + e.getMessage());
             e.printStackTrace();
         }
     }

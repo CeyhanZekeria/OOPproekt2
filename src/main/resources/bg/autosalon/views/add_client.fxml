@@ -12,7 +12,7 @@
       prefWidth="450" prefHeight="550"
       style="-fx-padding: 40; -fx-background-color: white;">
 
-    <Label text="Нов Клиент"
+    <Label text="New Client"
            style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
         <effect>
             <DropShadow color="#00000033" radius="5" offsetY="2"/>
@@ -22,31 +22,31 @@
     <Separator style="-fx-background-color: #ecf0f1;"/>
 
     <VBox spacing="5" alignment="CENTER_LEFT">
-        <Label text="Лични данни" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <Label text="Personal Information" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
 
         <HBox spacing="15">
-            <TextField fx:id="firstNameField" promptText="Име" HBox.hgrow="ALWAYS"
+            <TextField fx:id="firstNameField" promptText="First Name" HBox.hgrow="ALWAYS"
                        style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
 
-            <TextField fx:id="lastNameField" promptText="Фамилия" HBox.hgrow="ALWAYS"
+            <TextField fx:id="lastNameField" promptText="Last Name" HBox.hgrow="ALWAYS"
                        style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
         </HBox>
     </VBox>
 
     <VBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Данни за контакт" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <Label text="Contact Details" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
 
-        <TextField fx:id="emailField" promptText="Имейл адрес"
+        <TextField fx:id="emailField" promptText="Email Address"
                    style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
 
-        <TextField fx:id="phoneField" promptText="Телефонен номер"
+        <TextField fx:id="phoneField" promptText="Phone Number"
                    style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
     </VBox>
 
     <VBox spacing="5" alignment="CENTER_LEFT">
-        <Label text="Сигурност (Вход в системата)" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+        <Label text="Security &amp; Login" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
 
-        <PasswordField fx:id="passwordField" promptText="Парола за достъп"
+        <PasswordField fx:id="passwordField" promptText="Password"
                        style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
     </VBox>
 
@@ -57,14 +57,14 @@
     <Separator style="-fx-background-color: #ecf0f1;"/>
 
     <HBox spacing="20" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
-        <Button text="Запази" onAction="#onSave"
+        <Button text="Save" onAction="#onSave"
                 style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 140; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;">
             <effect>
                 <DropShadow color="#00000022" radius="3" offsetY="2"/>
             </effect>
         </Button>
 
-        <Button text="Отказ" onAction="#onCancel"
+        <Button text="Cancel" onAction="#onCancel"
                 style="-fx-background-color: #ecf0f1; -fx-text-fill: #7f8c8d; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 140; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;"/>
     </HBox>
 
