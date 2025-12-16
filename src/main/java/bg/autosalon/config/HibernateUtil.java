@@ -2,6 +2,8 @@ package bg.autosalon.config;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import org.hibernate.SessionBuilder;
+
 import java.util.*;
 
 public class HibernateUtil {
@@ -26,4 +28,6 @@ public class HibernateUtil {
     public static EntityManagerFactory getEntityManagerFactory() {
         return emf;
     }
+
+
 }

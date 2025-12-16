@@ -22,10 +22,25 @@ public class AddCarController {
     @FXML private Label errorLabel;
 
     private final CarService carService = new CarService();
+    private Car carToEdit = null;
 
     @FXML
     public void initialize() {
         fuelComboBox.getItems().setAll(FuelType.values());
+    }
+
+
+    public void setCarToEdit(Car car) {
+        this.carToEdit = car;
+
+
+        brandField.setText(car.getBrand());
+        modelField.setText(car.getModel());
+        vinField.setText(car.getVin());
+        yearField.setText(String.valueOf(car.getYear()));
+        mileageField.setText(String.valueOf(car.getMileage()));
+        priceField.setText(String.valueOf(car.getPrice()));
+        fuelComboBox.setValue(car.getFuel());
     }
 
     @FXML
@@ -50,18 +65,32 @@ public class AddCarController {
             double price = Double.parseDouble(priceField.getText().trim());
             FuelType fuel = fuelComboBox.getValue();
 
-            Car car = new Car();
-            car.setBrand(brand);
-            car.setModel(model);
-            car.setVin(vin);
-            car.setYear(year);
-            car.setMileage(mileage);
-            car.setPrice(price);
-            car.setFuel(fuel);
 
-            car.setStatus(CarStatus.AVAILABLE);
+            if (carToEdit != null) {
 
-            carService.addCar(car);
+                carToEdit.setBrand(brand);
+                carToEdit.setModel(model);
+                carToEdit.setVin(vin);
+                carToEdit.setYear(year);
+                carToEdit.setMileage(mileage);
+                carToEdit.setPrice(price);
+                carToEdit.setFuel(fuel);
+
+                carService.updateCar(carToEdit);
+            } else {
+
+                Car car = new Car();
+                car.setBrand(brand);
+                car.setModel(model);
+                car.setVin(vin);
+                car.setYear(year);
+                car.setMileage(mileage);
+                car.setPrice(price);
+                car.setFuel(fuel);
+                car.setStatus(CarStatus.AVAILABLE);
+
+                carService.addCar(car);
+            }
 
             closeWindow();
 

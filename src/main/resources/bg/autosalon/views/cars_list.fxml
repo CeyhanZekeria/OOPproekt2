@@ -26,6 +26,9 @@
         <Button text="+ Add Car" onAction="#onAddCar"
                 style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
 
+        <Button text="Edit" onAction="#onEditCar"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+
         <Button text="Delete" onAction="#onDeleteCar"
                 style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
     </HBox>

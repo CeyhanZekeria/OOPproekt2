@@ -1,10 +1,13 @@
 package bg.autosalon.services;
 
+import bg.autosalon.config.HibernateUtil;
 import bg.autosalon.dao.impl.CarDao;
 import bg.autosalon.entities.Car;
 import bg.autosalon.enums.CarStatus;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 
-import java.util.*;
+import java.util.List;
 
 public class CarService {
 
@@ -16,7 +19,22 @@ public class CarService {
     }
 
     public void updateCar(Car car) {
-        carDao.update(car);
+
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            transaction.begin();
+            em.merge(car);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
     }
 
     public Car getCar(Long id) {
