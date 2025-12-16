@@ -2,7 +2,7 @@ package bg.autosalon.controllers;
 
 import bg.autosalon.entities.Client;
 import bg.autosalon.enums.UserRole;
-import bg.autosalon.services.UserService;
+import bg.autosalon.services.ClientService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -18,7 +18,17 @@ public class AddClientController {
     @FXML private PasswordField passwordField;
     @FXML private Label errorLabel;
 
-    private final UserService userService = new UserService();
+    private final ClientService clientService = new ClientService();
+    private Client clientToEdit = null;
+
+    public void setClientToEdit(Client client) {
+        this.clientToEdit = client;
+        firstNameField.setText(client.getFirstName());
+        lastNameField.setText(client.getLastName());
+        emailField.setText(client.getEmail());
+        phoneField.setText(client.getPhone());
+        passwordField.setText(client.getPassword());
+    }
 
     @FXML
     public void onSave() {
@@ -27,22 +37,30 @@ public class AddClientController {
             return;
         }
 
+        try {
+            if (clientToEdit != null) {
+                clientToEdit.setFirstName(firstNameField.getText());
+                clientToEdit.setLastName(lastNameField.getText());
+                clientToEdit.setEmail(emailField.getText());
+                clientToEdit.setPhone(phoneField.getText());
+                clientToEdit.setPassword(passwordField.getText());
 
-        Client client = new Client();
-        client.setFirstName(firstNameField.getText());
-        client.setLastName(lastNameField.getText());
-        client.setEmail(emailField.getText());
-        client.setPhone(phoneField.getText());
-        client.setPassword(passwordField.getText());
-        client.setRole(UserRole.CLIENT);
-        client.setLoyaltyPoints(0);
+                clientService.updateClient(clientToEdit);
+            } else {
+                Client client = new Client();
+                client.setFirstName(firstNameField.getText());
+                client.setLastName(lastNameField.getText());
+                client.setEmail(emailField.getText());
+                client.setPhone(phoneField.getText());
+                client.setPassword(passwordField.getText());
+                client.setRole(UserRole.CLIENT);
 
-        boolean success = userService.register(client);
-
-        if (success) {
+                clientService.addClient(client);
+            }
             closeWindow();
-        } else {
-            errorLabel.setText("This email already exist!");
+        } catch (Exception e) {
+            errorLabel.setText("Error saving: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

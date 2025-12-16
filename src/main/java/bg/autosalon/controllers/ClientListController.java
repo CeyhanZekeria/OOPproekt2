@@ -7,8 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -39,18 +38,67 @@ public class ClientListController {
 
     @FXML
     public void onAddClient() {
+        openClientForm(null);
+    }
+
+    @FXML
+    public void onEditClient() {
+        Client selected = clientsTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert(Alert.AlertType.WARNING, "Please select a client to edit!");
+            return;
+        }
+        openClientForm(selected);
+    }
+
+    @FXML
+    public void onDeleteClient() {
+        Client selected = clientsTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert(Alert.AlertType.WARNING, "Please select a client to delete!");
+            return;
+        }
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirm Delete");
+        confirm.setContentText("Delete client: " + selected.getFirstName() + " " + selected.getLastName() + "?");
+
+        if (confirm.showAndWait().get() == ButtonType.OK) {
+            try {
+                clientService.deleteClient(selected.getId());
+                loadClients();
+            } catch (Exception e) {
+                showAlert(Alert.AlertType.ERROR, e.getMessage());
+            }
+        }
+    }
+
+    private void openClientForm(Client clientToEdit) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/add_client.fxml"));
             Parent root = loader.load();
+
+            if (clientToEdit != null) {
+                AddClientController controller = loader.getController();
+                controller.setClientToEdit(clientToEdit);
+            }
+
             Stage stage = new Stage();
-            stage.setTitle("Add client");
+            stage.setTitle(clientToEdit == null ? "Add Client" : "Edit Client");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+
             loadClients();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAlert(Alert.AlertType type, String message) {
+        Alert alert = new Alert(type);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private void loadClients() {
