@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="bg.autosalon.controllers.RegisterController"
+           prefWidth="650" prefHeight="550"
+           style="-fx-background-color: linear-gradient(to bottom right, #1e3c72, #2a5298);">
+
+    <VBox spacing="15" alignment="CENTER" maxWidth="480" maxHeight="-Infinity"
+          style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 30;">
+
+        <effect>
+            <DropShadow color="rgba(0,0,0,0.4)" radius="20" spread="0.1"/>
+        </effect>
+
+        <Label text="Register"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+
+        <HBox spacing="10">
+            <TextField fx:id="firstNameField" promptText="Name" HBox.hgrow="ALWAYS"
+                       style="-fx-background-color: #f0f2f5; -fx-border-color: transparent; -fx-padding: 10;"/>
+            <TextField fx:id="lastNameField" promptText="Last name" HBox.hgrow="ALWAYS"
+                       style="-fx-background-color: #f0f2f5; -fx-border-color: transparent; -fx-padding: 10;"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <TextField fx:id="emailField" promptText="Email" HBox.hgrow="ALWAYS"
+                       style="-fx-background-color: #f0f2f5; -fx-border-color: transparent; -fx-padding: 10;"/>
+            <TextField fx:id="phoneField" promptText="Phone" HBox.hgrow="ALWAYS"
+                       style="-fx-background-color: #f0f2f5; -fx-border-color: transparent; -fx-padding: 10;"/>
+        </HBox>
+
+        <PasswordField fx:id="passwordField" promptText="Password"
+                       style="-fx-background-color: #f0f2f5; -fx-border-color: transparent; -fx-padding: 10;"/>
+
+        <VBox alignment="CENTER" spacing="2">
+            <Label fx:id="errorLabel" textFill="#e74c3c" wrapText="true" style="-fx-font-size: 11px;"/>
+            <Label fx:id="successLabel" textFill="green" wrapText="true" style="-fx-font-size: 11px;"/>
+        </VBox>
+
+        <Button text="CREATE PROFILE" onAction="#onRegister" maxWidth="Infinity"
+                style="-fx-background-color: #1e3c72; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 10; -fx-background-radius: 5;"/>
+
+        <HBox alignment="CENTER" spacing="5">
+            <Label text="Already have account?" textFill="gray"/>
+            <Hyperlink text="Login" onAction="#goToLogin"
+                       style="-fx-text-fill: #1e3c72; -fx-border-color: transparent; -fx-underline: true;"/>
+        </HBox>
+
+    </VBox>
+
+</StackPane>

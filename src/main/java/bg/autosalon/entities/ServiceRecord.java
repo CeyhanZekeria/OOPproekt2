@@ -22,7 +22,9 @@ public class ServiceRecord {
 
     private String description;
 
-    public ServiceRecord() {}
+    public ServiceRecord() {
+
+    }
 
     public Long getId() {
         return id;

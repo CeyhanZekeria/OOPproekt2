@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bg.autosalon.controllers.AddEmployeeController"
+      spacing="20" alignment="TOP_CENTER"
+      prefWidth="450" prefHeight="600"
+      style="-fx-padding: 40; -fx-background-color: white;">
+
+    <Label text="New Employee"
+           style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+        <effect>
+            <DropShadow color="#00000033" radius="5" offsetY="2"/>
+        </effect>
+    </Label>
+
+    <Separator style="-fx-background-color: #ecf0f1;"/>
+
+    <VBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Personal Information" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+
+        <HBox spacing="15">
+            <TextField fx:id="firstNameField" promptText="First Name" HBox.hgrow="ALWAYS"
+                       style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+
+            <TextField fx:id="lastNameField" promptText="Last Name" HBox.hgrow="ALWAYS"
+                       style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+        </HBox>
+    </VBox>
+
+    <VBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Contact &amp; Access" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+
+        <TextField fx:id="emailField" promptText="Work Email"
+                   style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+
+        <HBox spacing="15">
+            <TextField fx:id="phoneField" promptText="Phone" HBox.hgrow="ALWAYS"
+                       style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+
+            <PasswordField fx:id="passwordField" promptText="Password" HBox.hgrow="ALWAYS"
+                           style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+        </HBox>
+    </VBox>
+
+    <VBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Job Details" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+
+        <TextField fx:id="salaryField" promptText="Salary (BGN)"
+                   style="-fx-background-radius: 5; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5;"/>
+    </VBox>
+
+    <Region VBox.vgrow="ALWAYS"/>
+
+    <Label fx:id="errorLabel" textFill="#e74c3c" wrapText="true" style="-fx-font-size: 13px;"/>
+
+    <Separator style="-fx-background-color: #ecf0f1;"/>
+
+    <HBox spacing="20" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+        <Button text="Create" onAction="#onSave"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 140; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;">
+            <effect>
+                <DropShadow color="#00000022" radius="3" offsetY="2"/>
+            </effect>
+        </Button>
+
+        <Button text="Cancel" onAction="#onCancel"
+                style="-fx-background-color: #ecf0f1; -fx-text-fill: #7f8c8d; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 140; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;"/>
+    </HBox>
+
+</VBox>
