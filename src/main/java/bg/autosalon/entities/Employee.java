@@ -1,20 +1,40 @@
 package bg.autosalon.entities;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
+@PrimaryKeyJoinColumn(name = "id")
 public class Employee extends User {
 
-    private double salary;
+    @Column(name = "salary")
+    private Double salary;
 
-    public Employee() {}
 
-    public double getSalary() {
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+    private List<Sale> sales = new ArrayList<>();
+
+
+    public Employee() {
+
+    }
+
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+
+    public List<Sale> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<Sale> sales) {
+        this.sales = sales;
     }
 }
