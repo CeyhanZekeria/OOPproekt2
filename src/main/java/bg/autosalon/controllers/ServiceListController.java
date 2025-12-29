@@ -8,8 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -43,11 +42,53 @@ public class ServiceListController {
 
     @FXML
     public void onAddService() {
+        openServiceForm(null);
+    }
+
+    @FXML
+    public void onEditService() {
+        ServiceRecord selected = serviceTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert(Alert.AlertType.WARNING, "Please select a record to edit!");
+            return;
+        }
+        openServiceForm(selected);
+    }
+
+    @FXML
+    public void onDeleteService() {
+        ServiceRecord selected = serviceTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert(Alert.AlertType.WARNING, "Please select a record to delete!");
+            return;
+        }
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirm Delete");
+        confirm.setContentText("Delete this service record?");
+
+        if (confirm.showAndWait().get() == ButtonType.OK) {
+            try {
+                serviceService.deleteRecord(selected.getId());
+                loadRecords();
+            } catch (Exception e) {
+                showAlert(Alert.AlertType.ERROR, e.getMessage());
+            }
+        }
+    }
+
+    private void openServiceForm(ServiceRecord recordToEdit) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/add_service.fxml"));
             Parent root = loader.load();
+
+            if (recordToEdit != null) {
+                AddServiceController controller = loader.getController();
+                controller.setRecordToEdit(recordToEdit);
+            }
+
             Stage stage = new Stage();
-            stage.setTitle("New Service Appointment");
+            stage.setTitle(recordToEdit == null ? "New Service Appointment" : "Edit Service");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
@@ -56,5 +97,11 @@ public class ServiceListController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAlert(Alert.AlertType type, String message) {
+        Alert alert = new Alert(type);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

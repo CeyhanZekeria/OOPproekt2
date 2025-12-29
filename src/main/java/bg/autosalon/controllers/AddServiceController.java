@@ -19,9 +19,12 @@ public class AddServiceController {
     @FXML private ComboBox<ServiceType> typeCombo;
     @FXML private DatePicker datePicker;
     @FXML private TextArea descArea;
+    @FXML private Label errorLabel;
 
     private final CarService carService = new CarService();
     private final ServiceRecordService serviceService = new ServiceRecordService();
+
+    private ServiceRecord recordToEdit = null;
 
     @FXML
     public void initialize() {
@@ -35,21 +38,44 @@ public class AddServiceController {
         });
     }
 
+    public void setRecordToEdit(ServiceRecord record) {
+        this.recordToEdit = record;
+        carCombo.setValue(record.getCar());
+        carCombo.setDisable(true);
+        typeCombo.setValue(record.getType());
+        datePicker.setValue(record.getDate());
+        descArea.setText(record.getDescription());
+    }
+
     @FXML
     public void onSave() {
-        if (carCombo.getValue() == null || typeCombo.getValue() == null) {
+        if (carCombo.getValue() == null || typeCombo.getValue() == null || descArea.getText().isEmpty()) {
+            errorLabel.setText("All fields are required!");
             return;
         }
 
-        ServiceRecord record = new ServiceRecord();
-        record.setCar(carCombo.getValue());
-        record.setType(typeCombo.getValue());
-        record.setDate(datePicker.getValue());
-        record.setDescription(descArea.getText());
+        try {
+            if (recordToEdit != null) {
+                recordToEdit.setType(typeCombo.getValue());
+                recordToEdit.setDate(datePicker.getValue());
+                recordToEdit.setDescription(descArea.getText());
 
-        serviceService.addRecord(record);
+                serviceService.updateRecord(recordToEdit);
+            } else {
+                ServiceRecord record = new ServiceRecord();
+                record.setCar(carCombo.getValue());
+                record.setType(typeCombo.getValue());
+                record.setDate(datePicker.getValue());
+                record.setDescription(descArea.getText());
 
-        closeWindow();
+                serviceService.addRecord(record);
+            }
+
+            closeWindow();
+        } catch (Exception e) {
+            errorLabel.setText("Error saving: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML public void onCancel() { closeWindow(); }
