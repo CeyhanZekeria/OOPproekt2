@@ -20,6 +20,17 @@ public class AddEmployeeController {
     @FXML private Label errorLabel;
 
     private final EmployeeService employeeService = new EmployeeService();
+    private Employee employeeToEdit = null;
+
+    public void setEmployeeToEdit(Employee employee) {
+        this.employeeToEdit = employee;
+        firstNameField.setText(employee.getFirstName());
+        lastNameField.setText(employee.getLastName());
+        emailField.setText(employee.getEmail());
+        phoneField.setText(employee.getPhone());
+        passwordField.setText(employee.getPassword());
+        salaryField.setText(String.valueOf(employee.getSalary()));
+    }
 
     @FXML
     public void onSave() {
@@ -29,26 +40,38 @@ public class AddEmployeeController {
         }
 
         try {
-            Employee employee = new Employee();
-            employee.setFirstName(firstNameField.getText());
-            employee.setLastName(lastNameField.getText());
-            employee.setEmail(emailField.getText());
-            employee.setPhone(phoneField.getText());
-            employee.setPassword(passwordField.getText());
+            if (employeeToEdit != null) {
 
-            employee.setRole(UserRole.SELLER);
+                employeeToEdit.setFirstName(firstNameField.getText());
+                employeeToEdit.setLastName(lastNameField.getText());
+                employeeToEdit.setEmail(emailField.getText());
+                employeeToEdit.setPhone(phoneField.getText());
+                employeeToEdit.setPassword(passwordField.getText());
 
-            if (!salaryField.getText().isEmpty()) {
-                double salary = Double.parseDouble(salaryField.getText());
-                employee.setSalary(salary);
+                if (!salaryField.getText().isEmpty()) {
+                    employeeToEdit.setSalary(Double.parseDouble(salaryField.getText()));
+                }
+
+                employeeService.updateEmployee(employeeToEdit);
             } else {
-                employee.setSalary(0.0);
+
+                Employee employee = new Employee();
+                employee.setFirstName(firstNameField.getText());
+                employee.setLastName(lastNameField.getText());
+                employee.setEmail(emailField.getText());
+                employee.setPhone(phoneField.getText());
+                employee.setPassword(passwordField.getText());
+                employee.setRole(UserRole.SELLER);
+
+                if (!salaryField.getText().isEmpty()) {
+                    employee.setSalary(Double.parseDouble(salaryField.getText()));
+                } else {
+                    employee.setSalary(0.0);
+                }
+
+                employeeService.addEmployee(employee);
             }
-
-            employeeService.addEmployee(employee);
-
             closeWindow();
-
         } catch (NumberFormatException e) {
             errorLabel.setText("Salary must be a valid number!");
         } catch (Exception e) {

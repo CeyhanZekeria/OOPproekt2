@@ -27,6 +27,8 @@ public class AddSaleController {
     private final EmployeeService employeeService = new EmployeeService();
     private final SaleService saleService = new SaleService();
 
+    private Sale saleToEdit = null;
+
     @FXML
     public void initialize() {
         List<Car> availableCars = carService.getAllCars().stream()
@@ -42,6 +44,19 @@ public class AddSaleController {
         setupComboDisplay();
     }
 
+    public void setSaleToEdit(Sale sale) {
+        this.saleToEdit = sale;
+
+        carCombo.getItems().add(sale.getCar());
+        carCombo.setValue(sale.getCar());
+        carCombo.setDisable(true);
+
+        clientCombo.setValue(sale.getClient());
+        employeeCombo.setValue(sale.getEmployee());
+        datePicker.setValue(sale.getSaleDate());
+        priceField.setText(String.valueOf(sale.getFinalPrice()));
+    }
+
     @FXML
     public void onSave() {
         try {
@@ -50,18 +65,27 @@ public class AddSaleController {
                 return;
             }
 
-            Sale sale = new Sale();
-            sale.setCar(carCombo.getValue());
-            sale.setClient(clientCombo.getValue());
-            sale.setEmployee(employeeCombo.getValue());
-            sale.setSaleDate(datePicker.getValue());
-            sale.setFinalPrice(Double.parseDouble(priceField.getText()));
+            if (saleToEdit != null) {
+                saleToEdit.setClient(clientCombo.getValue());
+                saleToEdit.setEmployee(employeeCombo.getValue());
+                saleToEdit.setSaleDate(datePicker.getValue());
+                saleToEdit.setFinalPrice(Double.parseDouble(priceField.getText()));
 
-            saleService.addSale(sale);
+                saleService.updateSale(saleToEdit);
+            } else {
+                Sale sale = new Sale();
+                sale.setCar(carCombo.getValue());
+                sale.setClient(clientCombo.getValue());
+                sale.setEmployee(employeeCombo.getValue());
+                sale.setSaleDate(datePicker.getValue());
+                sale.setFinalPrice(Double.parseDouble(priceField.getText()));
 
-            Car soldCar = carCombo.getValue();
-            soldCar.setStatus(CarStatus.SOLD);
-            carService.updateCar(soldCar);
+                saleService.addSale(sale);
+
+                Car soldCar = carCombo.getValue();
+                soldCar.setStatus(CarStatus.SOLD);
+                carService.updateCar(soldCar);
+            }
 
             closeWindow();
         } catch (Exception e) {

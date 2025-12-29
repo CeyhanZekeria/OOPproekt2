@@ -2,24 +2,39 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="bg.autosalon.controllers.ServiceListController"
-      spacing="20" style="-fx-padding: 20;">
+      spacing="20"
+      style="-fx-padding: 30; -fx-background-color: transparent;">
 
-    <HBox alignment="CENTER_LEFT" spacing="15">
-        <Label text="Service" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Service Records"
+               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+            <effect>
+                <DropShadow color="#00000033" radius="2" offsetY="1"/>
+            </effect>
+        </Label>
+
         <Region HBox.hgrow="ALWAYS"/>
 
-        <Button text="+ Make an appointment" onAction="#onAddService"
-                style="-fx-background-color: #e67e22; -fx-text-fill: white;"/>
+        <Button text="+ Add Service" onAction="#onAddService"
+                style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+
+        <Button text="Edit" onAction="#onEditService"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+
+        <Button text="Delete" onAction="#onDeleteService"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
     </HBox>
 
-    <TableView fx:id="serviceTable" VBox.vgrow="ALWAYS">
+    <TableView fx:id="serviceTable" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
         <columns>
-            <TableColumn fx:id="colCar" text="Vehicle" prefWidth="150"/>
-            <TableColumn fx:id="colType" text="Type" prefWidth="120"/>
+            <TableColumn fx:id="colCar" text="Car" prefWidth="150"/>
+            <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
             <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
             <TableColumn fx:id="colDesc" text="Description" prefWidth="250"/>
         </columns>
@@ -27,4 +42,5 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
         </columnResizePolicy>
     </TableView>
+
 </VBox>
