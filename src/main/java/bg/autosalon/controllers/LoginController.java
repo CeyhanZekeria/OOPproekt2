@@ -27,6 +27,8 @@ public class LoginController {
             return;
         }
 
+        bg.autosalon.utils.SessionManager.login(user);
+
         var controller = SceneLoader.openSceneWithController("dashboard.fxml");
 
         if (controller instanceof DashboardController dashboardController) {
