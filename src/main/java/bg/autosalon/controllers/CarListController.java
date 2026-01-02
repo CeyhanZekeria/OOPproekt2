@@ -1,7 +1,10 @@
 package bg.autosalon.controllers;
 
 import bg.autosalon.entities.Car;
+import bg.autosalon.entities.User;
+import bg.autosalon.enums.UserRole;
 import bg.autosalon.services.CarService;
+import bg.autosalon.utils.SessionManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,8 @@ public class CarListController {
 
     @FXML private TextField searchField;
     @FXML private TableView<Car> carsTable;
+
+
     @FXML private TableColumn<Car, String> colBrand;
     @FXML private TableColumn<Car, String> colModel;
     @FXML private TableColumn<Car, String> colVin;
@@ -27,6 +32,11 @@ public class CarListController {
     @FXML private TableColumn<Car, String> colFuel;
     @FXML private TableColumn<Car, String> colPrice;
     @FXML private TableColumn<Car, String> colStatus;
+
+
+    @FXML private Button btnAdd;
+    @FXML private Button btnEdit;
+    @FXML private Button btnDelete;
 
     private final CarService carService = new CarService();
     private ObservableList<Car> allCars;
@@ -42,10 +52,33 @@ public class CarListController {
         colPrice.setCellValueFactory(cell -> new SimpleStringProperty(String.format("%.2f", cell.getValue().getPrice())));
         colStatus.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getStatus().toString()));
 
+
         loadCars();
 
-
         searchField.textProperty().addListener((observable, oldValue, newValue) -> filterCars(newValue));
+
+        checkPermissions();
+    }
+
+
+    private void checkPermissions() {
+        User currentUser = SessionManager.getCurrentUser();
+
+
+        if (currentUser != null && currentUser.getRole() == UserRole.CLIENT) {
+            if (btnAdd != null) {
+                btnAdd.setVisible(false);
+                btnAdd.setManaged(false);
+            }
+            if (btnEdit != null) {
+                btnEdit.setVisible(false);
+                btnEdit.setManaged(false);
+            }
+            if (btnDelete != null) {
+                btnDelete.setVisible(false);
+                btnDelete.setManaged(false);
+            }
+        }
     }
 
     private void loadCars() {
@@ -72,12 +105,11 @@ public class CarListController {
         openCarForm(null);
     }
 
-
     @FXML
     public void onEditCar() {
         Car selected = carsTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert("Please select a car to edit!");
+            showAlert(Alert.AlertType.WARNING, "Please select a car to edit!");
             return;
         }
         openCarForm(selected);
@@ -87,20 +119,24 @@ public class CarListController {
     public void onDeleteCar() {
         Car selected = carsTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert("Please select a car to delete!");
+            showAlert(Alert.AlertType.WARNING, "Please select a car to delete!");
             return;
         }
 
-        carService.deleteCar(selected.getId());
-        loadCars();
-    }
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirm Delete");
+        confirm.setContentText("Are you sure you want to delete " + selected.getBrand() + " " + selected.getModel() + "?");
 
+        if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            carService.deleteCar(selected.getId());
+            loadCars();
+        }
+    }
 
     private void openCarForm(Car carToEdit) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/add_car.fxml"));
             Parent root = loader.load();
-
 
             if (carToEdit != null) {
                 AddCarController controller = loader.getController();
@@ -119,9 +155,8 @@ public class CarListController {
         }
     }
 
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning");
+    private void showAlert(Alert.AlertType type, String message) {
+        Alert alert = new Alert(type);
         alert.setContentText(message);
         alert.showAndWait();
     }

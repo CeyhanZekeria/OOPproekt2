@@ -20,16 +20,15 @@
 
         <Region HBox.hgrow="ALWAYS"/>
 
-        <TextField fx:id="searchField" promptText="🔍 Search by Brand, Model or VIN..."
+        <TextField fx:id="searchField" promptText=" Search by Brand, Model or VIN..."
                    style="-fx-background-radius: 20; -fx-padding: 8 15; -fx-border-color: #bdc3c7; -fx-border-radius: 20; -fx-min-width: 250;"/>
-
-        <Button text="+ Add Car" onAction="#onAddCar"
+        <Button fx:id="btnAdd" text="+ Add Car" onAction="#onAddCar"
                 style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
 
-        <Button text="Edit" onAction="#onEditCar"
+        <Button fx:id="btnEdit" text="Edit" onAction="#onEditCar"
                 style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
 
-        <Button text="Delete" onAction="#onDeleteCar"
+        <Button fx:id="btnDelete" text="Delete" onAction="#onDeleteCar"
                 style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
     </HBox>
 
