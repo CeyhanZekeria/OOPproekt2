@@ -30,6 +30,9 @@
 
         <Button fx:id="btnDelete" text="Delete" onAction="#onDeleteCar"
                 style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+
+        <Button fx:id="btnRequest" text="Request Test Drive" onAction="#onRequestTestDrive"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
     </HBox>
 
     <TableView fx:id="carsTable" VBox.vgrow="ALWAYS"

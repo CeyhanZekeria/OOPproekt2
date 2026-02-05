@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +30,7 @@ public class AddSaleController {
 
     @FXML
     public void initialize() {
+
         List<Car> availableCars = carService.getAllCars().stream()
                 .filter(c -> c.getStatus() == CarStatus.AVAILABLE)
                 .collect(Collectors.toList());
@@ -47,7 +47,9 @@ public class AddSaleController {
     public void setSaleToEdit(Sale sale) {
         this.saleToEdit = sale;
 
-        carCombo.getItems().add(sale.getCar());
+        if (!carCombo.getItems().contains(sale.getCar())) {
+            carCombo.getItems().add(sale.getCar());
+        }
         carCombo.setValue(sale.getCar());
         carCombo.setDisable(true);
 
@@ -66,6 +68,7 @@ public class AddSaleController {
             }
 
             if (saleToEdit != null) {
+
                 saleToEdit.setClient(clientCombo.getValue());
                 saleToEdit.setEmployee(employeeCombo.getValue());
                 saleToEdit.setSaleDate(datePicker.getValue());
@@ -73,23 +76,42 @@ public class AddSaleController {
 
                 saleService.updateSale(saleToEdit);
             } else {
+
                 Sale sale = new Sale();
                 sale.setCar(carCombo.getValue());
                 sale.setClient(clientCombo.getValue());
                 sale.setEmployee(employeeCombo.getValue());
                 sale.setSaleDate(datePicker.getValue());
-                sale.setFinalPrice(Double.parseDouble(priceField.getText()));
+
+                double price = Double.parseDouble(priceField.getText());
+                sale.setFinalPrice(price);
 
                 saleService.addSale(sale);
+
 
                 Car soldCar = carCombo.getValue();
                 soldCar.setStatus(CarStatus.SOLD);
                 carService.updateCar(soldCar);
+
+
+                // 1 точка за всеки 100 лв
+                int newPoints = (int) (price / 100);
+
+                Client client = sale.getClient();
+                int currentPoints = client.getLoyaltyPoints();
+                client.setLoyaltyPoints(currentPoints + newPoints);
+
+
+                clientService.updateClient(client);
+
             }
 
             closeWindow();
+        } catch (NumberFormatException e) {
+            errorLabel.setText("Invalid price format!");
         } catch (Exception e) {
             errorLabel.setText("Error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -98,12 +120,10 @@ public class AddSaleController {
             @Override public String toString(Car c) { return c == null ? "" : c.getBrand() + " " + c.getModel() + " (" + c.getVin() + ")"; }
             @Override public Car fromString(String s) { return null; }
         });
-
         clientCombo.setConverter(new StringConverter<>() {
             @Override public String toString(Client c) { return c == null ? "" : c.getFirstName() + " " + c.getLastName(); }
             @Override public Client fromString(String s) { return null; }
         });
-
         employeeCombo.setConverter(new StringConverter<>() {
             @Override public String toString(Employee e) { return e == null ? "" : e.getFirstName() + " " + e.getLastName(); }
             @Override public Employee fromString(String s) { return null; }
@@ -111,5 +131,9 @@ public class AddSaleController {
     }
 
     @FXML public void onCancel() { closeWindow(); }
-    private void closeWindow() { ((Stage) priceField.getScene().getWindow()).close(); }
+
+    private void closeWindow() {
+        Stage stage = (Stage) priceField.getScene().getWindow();
+        stage.close();
+    }
 }
