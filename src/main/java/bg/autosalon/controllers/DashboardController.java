@@ -40,6 +40,7 @@ public class DashboardController {
     @FXML private Button btnEmployees;
     @FXML private Button btnSales;
     @FXML private Button btnService;
+    @FXML private Button btnRequests;
 
     private final CarService carService = new CarService();
     private final SaleService saleService = new SaleService();
@@ -81,6 +82,8 @@ public class DashboardController {
             hideElement(btnClients);
             hideElement(btnEmployees);
             hideElement(btnSales);
+
+            hideElement(btnRequests);
 
             hideElement(revenueCard);
             hideElement(clientsCard);
@@ -135,6 +138,11 @@ public class DashboardController {
     @FXML public void openEmployees() { loadView("employees_list.fxml"); }
     @FXML public void openSales() { loadView("sales_list.fxml"); }
     @FXML public void openService() { loadView("service_list.fxml"); }
+
+    @FXML
+    public void openRequests() {
+        loadView("request_list.fxml");
+    }
 
     @FXML
     public void logout() {

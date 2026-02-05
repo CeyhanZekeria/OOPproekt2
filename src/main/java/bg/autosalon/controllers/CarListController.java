@@ -1,9 +1,12 @@
 package bg.autosalon.controllers;
 
 import bg.autosalon.entities.Car;
+import bg.autosalon.entities.Client;
+import bg.autosalon.entities.TestDriveRequest;
 import bg.autosalon.entities.User;
 import bg.autosalon.enums.UserRole;
 import bg.autosalon.services.CarService;
+import bg.autosalon.services.RequestService;
 import bg.autosalon.utils.SessionManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -15,15 +18,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CarListController {
 
     @FXML private TextField searchField;
     @FXML private TableView<Car> carsTable;
-
 
     @FXML private TableColumn<Car, String> colBrand;
     @FXML private TableColumn<Car, String> colModel;
@@ -37,8 +44,12 @@ public class CarListController {
     @FXML private Button btnAdd;
     @FXML private Button btnEdit;
     @FXML private Button btnDelete;
+    @FXML private Button btnRequest;
 
     private final CarService carService = new CarService();
+
+    private final RequestService requestService = new RequestService();
+
     private ObservableList<Car> allCars;
 
     @FXML
@@ -52,34 +63,99 @@ public class CarListController {
         colPrice.setCellValueFactory(cell -> new SimpleStringProperty(String.format("%.2f", cell.getValue().getPrice())));
         colStatus.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getStatus().toString()));
 
-
         loadCars();
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> filterCars(newValue));
 
+
         checkPermissions();
     }
-
 
     private void checkPermissions() {
         User currentUser = SessionManager.getCurrentUser();
 
+        setButtonVisible(btnAdd, false);
+        setButtonVisible(btnEdit, false);
+        setButtonVisible(btnDelete, false);
+        setButtonVisible(btnRequest, false);
 
-        if (currentUser != null && currentUser.getRole() == UserRole.CLIENT) {
-            if (btnAdd != null) {
-                btnAdd.setVisible(false);
-                btnAdd.setManaged(false);
-            }
-            if (btnEdit != null) {
-                btnEdit.setVisible(false);
-                btnEdit.setManaged(false);
-            }
-            if (btnDelete != null) {
-                btnDelete.setVisible(false);
-                btnDelete.setManaged(false);
+        if (currentUser != null) {
+            if (currentUser.getRole() == UserRole.CLIENT) {
+                setButtonVisible(btnRequest, true);
+            } else if (currentUser.getRole() == UserRole.ADMIN){
+
+                setButtonVisible(btnAdd, true);
+                setButtonVisible(btnEdit, true);
+                setButtonVisible(btnDelete, true);
+                setButtonVisible(btnRequest,true);
+            } else if (currentUser.getRole() == UserRole.SELLER) {
+
+                setButtonVisible(btnAdd, true);
+                setButtonVisible(btnEdit, true);
+                setButtonVisible(btnDelete, true);
             }
         }
     }
+
+    private void setButtonVisible(Button btn, boolean visible) {
+        if (btn != null) {
+            btn.setVisible(visible);
+            btn.setManaged(visible);
+        }
+    }
+
+
+    @FXML
+    public void onRequestTestDrive() {
+        Car selectedCar = carsTable.getSelectionModel().getSelectedItem();
+        if (selectedCar == null) {
+            showAlert(Alert.AlertType.WARNING, "Please select a car first!");
+            return;
+        }
+
+        User currentUser = SessionManager.getCurrentUser();
+
+        if (!(currentUser instanceof Client)) {
+            showAlert(Alert.AlertType.ERROR, "Only clients can request test drives!");
+            return;
+        }
+
+
+        Dialog<LocalDate> dialog = new Dialog<>();
+        dialog.setTitle("Schedule Test Drive");
+        dialog.setHeaderText("Request test drive for: " + selectedCar.getBrand() + " " + selectedCar.getModel());
+
+        ButtonType typeOk = new ButtonType("Send Request", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(typeOk, ButtonType.CANCEL);
+
+        DatePicker datePicker = new DatePicker(LocalDate.now().plusDays(1));
+        VBox content = new VBox(10, new Label("Select Date:"), datePicker);
+        dialog.getDialogPane().setContent(content);
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == typeOk) return datePicker.getValue();
+            return null;
+        });
+
+        Optional<LocalDate> result = dialog.showAndWait();
+        result.ifPresent(date -> {
+            try {
+                TestDriveRequest request = new TestDriveRequest();
+                request.setCar(selectedCar);
+                request.setClient((Client) currentUser);
+                request.setRequestDate(LocalDateTime.of(date, LocalTime.of(10, 10)));
+
+                requestService.createRequest(request);
+
+                showAlert(Alert.AlertType.INFORMATION, "Request sent! An employee will review it.");
+            } catch (Exception e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Error: " + e.getMessage());
+            }
+        });
+    }
+
+
 
     private void loadCars() {
         allCars = FXCollections.observableArrayList(carService.getAllCars());
@@ -100,34 +176,16 @@ public class CarListController {
         carsTable.setItems(FXCollections.observableArrayList(filtered));
     }
 
-    @FXML
-    public void onAddCar() {
-        openCarForm(null);
+    @FXML public void onAddCar() { openCarForm(null); }
+
+    @FXML public void onEditCar() {
+        Car selected = carsTable.getSelectionModel().getSelectedItem();
+        if (selected != null) openCarForm(selected);
     }
 
-    @FXML
-    public void onEditCar() {
+    @FXML public void onDeleteCar() {
         Car selected = carsTable.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Please select a car to edit!");
-            return;
-        }
-        openCarForm(selected);
-    }
-
-    @FXML
-    public void onDeleteCar() {
-        Car selected = carsTable.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Please select a car to delete!");
-            return;
-        }
-
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle("Confirm Delete");
-        confirm.setContentText("Are you sure you want to delete " + selected.getBrand() + " " + selected.getModel() + "?");
-
-        if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+        if (selected != null) {
             carService.deleteCar(selected.getId());
             loadCars();
         }
@@ -137,22 +195,15 @@ public class CarListController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/add_car.fxml"));
             Parent root = loader.load();
-
             if (carToEdit != null) {
                 AddCarController controller = loader.getController();
                 controller.setCarToEdit(carToEdit);
             }
-
             Stage stage = new Stage();
-            stage.setTitle(carToEdit == null ? "Add Car" : "Edit Car");
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-
             loadCars();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) { e.printStackTrace(); }
     }
 
     private void showAlert(Alert.AlertType type, String message) {

@@ -53,6 +53,9 @@
 
                 <Button fx:id="btnService" text="Service" onAction="#openService" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
+
+                <Button fx:id="btnRequests" text="Requests" onAction="#openRequests" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
             </VBox>
 
             <Region VBox.vgrow="ALWAYS"/>
