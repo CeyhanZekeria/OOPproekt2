@@ -1,9 +1,11 @@
 package bg.autosalon.services;
 
+import bg.autosalon.config.HibernateUtil;
 import bg.autosalon.dao.impl.NotificationDao;
 import bg.autosalon.entities.Notification;
+import jakarta.persistence.EntityManager;
 
-import java.util.*;
+import java.util.List;
 
 public class NotificationService {
 
@@ -13,22 +15,18 @@ public class NotificationService {
         notificationDao.save(notification);
     }
 
-    public void updateNotification(Notification notification) {
-        notificationDao.update(notification);
-    }
 
-    public Notification getNotification(Long id) {
-        return notificationDao.findById(id);
-    }
-
-    public List<Notification> getAllNotifications() {
-        return notificationDao.findAll();
-    }
-
-    public void deleteNotification(Long id) {
-        Notification notification = notificationDao.findById(id);
-        if (notification != null) {
-            notificationDao.delete(notification);
+    public List<Notification> getClientNotifications(Long clientId) {
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            return em.createQuery(
+                            "SELECT n FROM Notification n WHERE n.client.id = :cid ORDER BY n.date DESC",
+                            Notification.class)
+                    .setParameter("cid", clientId)
+                    .getResultList();
+        } finally {
+            em.close();
         }
     }
+
 }

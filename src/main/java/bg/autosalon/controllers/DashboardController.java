@@ -35,12 +35,16 @@ public class DashboardController {
     @FXML private VBox clientsCard;
     @FXML private VBox quickActionsBox;
 
+    // --- БУТОНИ ЗА НАВИГАЦИЯ ---
     @FXML private Button btnCars;
     @FXML private Button btnClients;
     @FXML private Button btnEmployees;
     @FXML private Button btnSales;
     @FXML private Button btnService;
+
+    // Новите бутони
     @FXML private Button btnRequests;
+    @FXML private Button btnNotifications;
 
     private final CarService carService = new CarService();
     private final SaleService saleService = new SaleService();
@@ -48,7 +52,6 @@ public class DashboardController {
 
     public void setUser(User user) {
         this.loggedUser = user;
-
         if (userLabel != null) {
             String roleName = translateRole(user.getRole());
             userLabel.setText("Welcome,\n" + user.getFirstName() + " (" + roleName + ")");
@@ -64,6 +67,7 @@ public class DashboardController {
                 .count();
         totalCarsLabel.setText(String.valueOf(availableCars));
 
+
         if (loggedUser.getRole() != UserRole.CLIENT) {
             double totalRevenue = saleService.getAllSales().stream()
                     .mapToDouble(Sale::getFinalPrice)
@@ -75,23 +79,33 @@ public class DashboardController {
         }
     }
 
+
     private void applyRolePermissions() {
         if (loggedUser == null) return;
 
         if (loggedUser.getRole() == UserRole.CLIENT) {
+
             hideElement(btnClients);
             hideElement(btnEmployees);
             hideElement(btnSales);
 
             hideElement(btnRequests);
 
+
             hideElement(revenueCard);
             hideElement(clientsCard);
-
             hideElement(quickActionsBox);
 
-        } else if (loggedUser.getRole() == UserRole.SELLER) {
-            hideElement(btnEmployees);
+
+        } else {
+
+            hideElement(btnNotifications);
+
+
+            if (loggedUser.getRole() == UserRole.SELLER) {
+
+                hideElement(btnEmployees);
+            }
         }
     }
 
@@ -133,19 +147,28 @@ public class DashboardController {
         }
     }
 
+
     @FXML public void openCars() { loadView("cars_list.fxml"); }
     @FXML public void openClients() { loadView("clients_list.fxml"); }
     @FXML public void openEmployees() { loadView("employees_list.fxml"); }
     @FXML public void openSales() { loadView("sales_list.fxml"); }
     @FXML public void openService() { loadView("service_list.fxml"); }
 
+
     @FXML
     public void openRequests() {
         loadView("request_list.fxml");
     }
 
+    // Отваряне на личните съобщения (за Клиенти)
+    @FXML
+    public void openNotifications() {
+        loadView("my_notifications.fxml");
+    }
+
     @FXML
     public void logout() {
+        bg.autosalon.utils.SessionManager.logout();
         SceneLoader.openScene("login.fxml");
     }
 }
