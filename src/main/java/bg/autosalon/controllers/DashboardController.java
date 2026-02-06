@@ -35,14 +35,14 @@ public class DashboardController {
     @FXML private VBox clientsCard;
     @FXML private VBox quickActionsBox;
 
-    // --- БУТОНИ ЗА НАВИГАЦИЯ ---
+
     @FXML private Button btnCars;
     @FXML private Button btnClients;
     @FXML private Button btnEmployees;
     @FXML private Button btnSales;
     @FXML private Button btnService;
 
-    // Новите бутони
+
     @FXML private Button btnRequests;
     @FXML private Button btnNotifications;
 
@@ -160,7 +160,7 @@ public class DashboardController {
         loadView("request_list.fxml");
     }
 
-    // Отваряне на личните съобщения (за Клиенти)
+
     @FXML
     public void openNotifications() {
         loadView("my_notifications.fxml");
