@@ -35,28 +35,20 @@
             <Separator style="-fx-background-color: #34495e; -fx-opacity: 0.3;"/>
 
             <VBox spacing="5" style="-fx-padding: 10;">
-
                 <Button text="Home" onAction="#openHome" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20; -fx-font-weight: bold;"/>
-
                 <Button fx:id="btnCars" text="Cars" onAction="#openCars" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-
                 <Button fx:id="btnClients" text="Clients" onAction="#openClients" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-
                 <Button fx:id="btnEmployees" text="Employees" onAction="#openEmployees" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-
                 <Button fx:id="btnSales" text="Sales" onAction="#openSales" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-
                 <Button fx:id="btnService" text="Service" onAction="#openService" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-
                 <Button fx:id="btnRequests" text="Requests" onAction="#openRequests" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-
                 <Button fx:id="btnNotifications" text="My Messages" onAction="#openNotifications" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
             </VBox>
@@ -102,6 +94,9 @@
                     <HBox spacing="15">
                         <Button text="Add Car" onAction="#openCars" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20; -fx-cursor: hand;"/>
                         <Button text="New Sale" onAction="#openSales" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20; -fx-cursor: hand;"/>
+
+                        <Button fx:id="btnReport" text="📄 PDF Report" onAction="#onGenerateReport"
+                                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20; -fx-cursor: hand;"/>
                     </HBox>
                 </VBox>
 

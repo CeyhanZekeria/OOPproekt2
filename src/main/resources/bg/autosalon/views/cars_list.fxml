@@ -11,7 +11,7 @@
       style="-fx-padding: 30; -fx-background-color: transparent;">
 
     <HBox alignment="CENTER_LEFT" spacing="20">
-        <Label text="Vehicles"
+        <Label text="Car Inventory"
                style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
             <effect>
                 <DropShadow color="#00000033" radius="2" offsetY="1"/>
@@ -20,8 +20,19 @@
 
         <Region HBox.hgrow="ALWAYS"/>
 
-        <TextField fx:id="searchField" promptText=" Search by Brand, Model or VIN..."
-                   style="-fx-background-radius: 20; -fx-padding: 8 15; -fx-border-color: #bdc3c7; -fx-border-radius: 20; -fx-min-width: 250;"/>
+        <TextField fx:id="searchField" promptText="Search brand, model or VIN..."
+                   style="-fx-background-radius: 20; -fx-padding: 8 15; -fx-pref-width: 250;"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button fx:id="btnRequest" text="Request Test Drive" onAction="#onRequestTestDrive"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button fx:id="btnHistory" text="📜 History" onAction="#onHistory"
+                style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+
         <Button fx:id="btnAdd" text="+ Add Car" onAction="#onAddCar"
                 style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
 
@@ -30,9 +41,6 @@
 
         <Button fx:id="btnDelete" text="Delete" onAction="#onDeleteCar"
                 style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
-
-        <Button fx:id="btnRequest" text="Request Test Drive" onAction="#onRequestTestDrive"
-                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20; -fx-background-radius: 5;"/>
     </HBox>
 
     <TableView fx:id="carsTable" VBox.vgrow="ALWAYS"
@@ -43,7 +51,7 @@
             <TableColumn fx:id="colVin" text="VIN" prefWidth="150"/>
             <TableColumn fx:id="colYear" text="Year" prefWidth="80"/>
             <TableColumn fx:id="colFuel" text="Fuel" prefWidth="100"/>
-            <TableColumn fx:id="colPrice" text="Price (BGN)" prefWidth="100"/>
+            <TableColumn fx:id="colPrice" text="Price (BGN)" prefWidth="120"/>
             <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
         </columns>
         <columnResizePolicy>
