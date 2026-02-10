@@ -8,7 +8,8 @@ public class Client extends User {
 
     private int loyaltyPoints;
 
-    public Client() {}
+    public Client() {
+    }
 
     public int getLoyaltyPoints() {
         return loyaltyPoints;

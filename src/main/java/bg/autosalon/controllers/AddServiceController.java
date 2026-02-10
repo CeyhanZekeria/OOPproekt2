@@ -10,16 +10,23 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+
 import java.time.LocalDate;
 
 public class AddServiceController {
 
-    @FXML private ComboBox<Car> carCombo;
-    @FXML private ComboBox<ServiceType> typeCombo;
-    @FXML private DatePicker datePicker;
-    @FXML private TextField priceField;
-    @FXML private TextArea descArea;
-    @FXML private Label errorLabel;
+    @FXML
+    private ComboBox<Car> carCombo;
+    @FXML
+    private ComboBox<ServiceType> typeCombo;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private TextField priceField;
+    @FXML
+    private TextArea descArea;
+    @FXML
+    private Label errorLabel;
 
     private final CarService carService = new CarService();
     private final ServiceRecordService serviceService = new ServiceRecordService();
@@ -32,8 +39,15 @@ public class AddServiceController {
         datePicker.setValue(LocalDate.now());
 
         carCombo.setConverter(new StringConverter<>() {
-            @Override public String toString(Car c) { return c == null ? "" : c.getBrand() + " " + c.getModel() + " (" + c.getVin() + ")"; }
-            @Override public Car fromString(String s) { return null; }
+            @Override
+            public String toString(Car c) {
+                return c == null ? "" : c.getBrand() + " " + c.getModel() + " (" + c.getVin() + ")";
+            }
+
+            @Override
+            public Car fromString(String s) {
+                return null;
+            }
         });
     }
 
@@ -81,6 +95,12 @@ public class AddServiceController {
         }
     }
 
-    @FXML public void onCancel() { closeWindow(); }
-    private void closeWindow() { ((Stage) descArea.getScene().getWindow()).close(); }
+    @FXML
+    public void onCancel() {
+        closeWindow();
+    }
+
+    private void closeWindow() {
+        ((Stage) descArea.getScene().getWindow()).close();
+    }
 }

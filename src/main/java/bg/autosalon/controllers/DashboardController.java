@@ -27,26 +27,43 @@ public class DashboardController {
 
     private User loggedUser;
 
-    @FXML private Label userLabel;
-    @FXML private StackPane contentPane;
-    @FXML private VBox dashboardHome;
+    @FXML
+    private Label userLabel;
+    @FXML
+    private StackPane contentPane;
+    @FXML
+    private VBox dashboardHome;
 
-    @FXML private Label totalCarsLabel;
-    @FXML private Label totalSalesLabel;
-    @FXML private Label totalClientsLabel;
+    @FXML
+    private Label totalCarsLabel;
+    @FXML
+    private Label totalSalesLabel;
+    @FXML
+    private Label totalClientsLabel;
 
-    @FXML private VBox revenueCard;
-    @FXML private VBox clientsCard;
-    @FXML private VBox quickActionsBox;
+    @FXML
+    private VBox revenueCard;
+    @FXML
+    private VBox clientsCard;
+    @FXML
+    private VBox quickActionsBox;
 
-    @FXML private Button btnCars;
-    @FXML private Button btnClients;
-    @FXML private Button btnEmployees;
-    @FXML private Button btnSales;
-    @FXML private Button btnService;
-    @FXML private Button btnRequests;
-    @FXML private Button btnNotifications;
-    @FXML private Button btnReport;
+    @FXML
+    private Button btnCars;
+    @FXML
+    private Button btnClients;
+    @FXML
+    private Button btnEmployees;
+    @FXML
+    private Button btnSales;
+    @FXML
+    private Button btnService;
+    @FXML
+    private Button btnRequests;
+    @FXML
+    private Button btnNotifications;
+    @FXML
+    private Button btnReport;
 
     private final CarService carService = new CarService();
     private final SaleService saleService = new SaleService();
@@ -188,13 +205,40 @@ public class DashboardController {
     }
 
 
-    @FXML public void openCars() { loadView("cars_list.fxml"); }
-    @FXML public void openClients() { loadView("clients_list.fxml"); }
-    @FXML public void openEmployees() { loadView("employees_list.fxml"); }
-    @FXML public void openSales() { loadView("sales_list.fxml"); }
-    @FXML public void openService() { loadView("service_list.fxml"); }
-    @FXML public void openRequests() { loadView("request_list.fxml"); }
-    @FXML public void openNotifications() { loadView("my_notifications.fxml"); }
+    @FXML
+    public void openCars() {
+        loadView("cars_list.fxml");
+    }
+
+    @FXML
+    public void openClients() {
+        loadView("clients_list.fxml");
+    }
+
+    @FXML
+    public void openEmployees() {
+        loadView("employees_list.fxml");
+    }
+
+    @FXML
+    public void openSales() {
+        loadView("sales_list.fxml");
+    }
+
+    @FXML
+    public void openService() {
+        loadView("service_list.fxml");
+    }
+
+    @FXML
+    public void openRequests() {
+        loadView("request_list.fxml");
+    }
+
+    @FXML
+    public void openNotifications() {
+        loadView("my_notifications.fxml");
+    }
 
     @FXML
     public void logout() {

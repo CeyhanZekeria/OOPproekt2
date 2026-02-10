@@ -91,7 +91,6 @@ public class PdfReportGenerator {
         document.add(serviceTotalPara);
 
 
-
         Font grandTotalFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16, BaseColor.DARK_GRAY);
         Paragraph grandTotal = new Paragraph("TOTAL REVENUE: " + String.format("%.2f BGN", totalSales + totalService), grandTotalFont);
         grandTotal.setAlignment(Element.ALIGN_RIGHT);

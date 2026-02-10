@@ -4,6 +4,7 @@ import bg.autosalon.entities.Employee;
 import bg.autosalon.entities.User;
 import bg.autosalon.enums.UserRole;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserEntityTest {

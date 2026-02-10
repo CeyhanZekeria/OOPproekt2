@@ -8,18 +8,25 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class AddSaleController {
 
-    @FXML private ComboBox<Car> carCombo;
-    @FXML private ComboBox<Client> clientCombo;
-    @FXML private ComboBox<Employee> employeeCombo;
-    @FXML private DatePicker datePicker;
-    @FXML private TextField priceField;
-    @FXML private Label errorLabel;
+    @FXML
+    private ComboBox<Car> carCombo;
+    @FXML
+    private ComboBox<Client> clientCombo;
+    @FXML
+    private ComboBox<Employee> employeeCombo;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private TextField priceField;
+    @FXML
+    private Label errorLabel;
 
     private final CarService carService = new CarService();
     private final ClientService clientService = new ClientService();
@@ -117,20 +124,44 @@ public class AddSaleController {
 
     private void setupComboDisplay() {
         carCombo.setConverter(new StringConverter<>() {
-            @Override public String toString(Car c) { return c == null ? "" : c.getBrand() + " " + c.getModel() + " (" + c.getVin() + ")"; }
-            @Override public Car fromString(String s) { return null; }
+            @Override
+            public String toString(Car c) {
+                return c == null ? "" : c.getBrand() + " " + c.getModel() + " (" + c.getVin() + ")";
+            }
+
+            @Override
+            public Car fromString(String s) {
+                return null;
+            }
         });
         clientCombo.setConverter(new StringConverter<>() {
-            @Override public String toString(Client c) { return c == null ? "" : c.getFirstName() + " " + c.getLastName(); }
-            @Override public Client fromString(String s) { return null; }
+            @Override
+            public String toString(Client c) {
+                return c == null ? "" : c.getFirstName() + " " + c.getLastName();
+            }
+
+            @Override
+            public Client fromString(String s) {
+                return null;
+            }
         });
         employeeCombo.setConverter(new StringConverter<>() {
-            @Override public String toString(Employee e) { return e == null ? "" : e.getFirstName() + " " + e.getLastName(); }
-            @Override public Employee fromString(String s) { return null; }
+            @Override
+            public String toString(Employee e) {
+                return e == null ? "" : e.getFirstName() + " " + e.getLastName();
+            }
+
+            @Override
+            public Employee fromString(String s) {
+                return null;
+            }
         });
     }
 
-    @FXML public void onCancel() { closeWindow(); }
+    @FXML
+    public void onCancel() {
+        closeWindow();
+    }
 
     private void closeWindow() {
         Stage stage = (Stage) priceField.getScene().getWindow();

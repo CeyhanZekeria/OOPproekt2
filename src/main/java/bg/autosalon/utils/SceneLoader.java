@@ -9,7 +9,8 @@ public final class SceneLoader {
 
     private static Stage primaryStage;
 
-    private SceneLoader() {}
+    private SceneLoader() {
+    }
 
     public static void setStage(Stage stage) {
         primaryStage = stage;

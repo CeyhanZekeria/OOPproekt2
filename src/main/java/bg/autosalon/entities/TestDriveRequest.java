@@ -2,6 +2,7 @@ package bg.autosalon.entities;
 
 import bg.autosalon.enums.RequestStatus;
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,21 +28,47 @@ public class TestDriveRequest {
     @Column(nullable = false)
     private RequestStatus status;
 
-    public TestDriveRequest() {}
+    public TestDriveRequest() {
+    }
 
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Client getClient() { return client; }
-    public void setClient(Client client) { this.client = client; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Car getCar() { return car; }
-    public void setCar(Car car) { this.car = car; }
+    public Client getClient() {
+        return client;
+    }
 
-    public LocalDateTime getRequestDate() { return requestDate; }
-    public void setRequestDate(LocalDateTime requestDate) { this.requestDate = requestDate; }
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
-    public RequestStatus getStatus() { return status; }
-    public void setStatus(RequestStatus status) { this.status = status; }
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public LocalDateTime getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(LocalDateTime requestDate) {
+        this.requestDate = requestDate;
+    }
+
+    public RequestStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(RequestStatus status) {
+        this.status = status;
+    }
 }

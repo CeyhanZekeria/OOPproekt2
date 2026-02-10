@@ -3,6 +3,7 @@ package bg.autosalon.tests;
 import bg.autosalon.entities.Client;
 import bg.autosalon.enums.UserRole;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ClientTest {

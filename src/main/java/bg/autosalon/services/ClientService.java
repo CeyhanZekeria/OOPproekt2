@@ -38,7 +38,7 @@ public class ClientService {
             transaction.begin();
             Client client = em.find(Client.class, id);
 
-             em.remove(client);
+            em.remove(client);
 
 
             transaction.commit();

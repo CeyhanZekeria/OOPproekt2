@@ -1,6 +1,7 @@
 package bg.autosalon.entities;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -24,7 +25,8 @@ public class Sale {
 
     private double finalPrice;
 
-    public Sale() {}
+    public Sale() {
+    }
 
     public Long getId() {
         return id;

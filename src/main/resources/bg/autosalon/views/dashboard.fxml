@@ -39,17 +39,23 @@
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20; -fx-font-weight: bold;"/>
                 <Button fx:id="btnCars" text="Cars" onAction="#openCars" maxWidth="Infinity" alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-                <Button fx:id="btnClients" text="Clients" onAction="#openClients" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnClients" text="Clients" onAction="#openClients" maxWidth="Infinity"
+                        alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-                <Button fx:id="btnEmployees" text="Employees" onAction="#openEmployees" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnEmployees" text="Employees" onAction="#openEmployees" maxWidth="Infinity"
+                        alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-                <Button fx:id="btnSales" text="Sales" onAction="#openSales" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnSales" text="Sales" onAction="#openSales" maxWidth="Infinity"
+                        alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-                <Button fx:id="btnService" text="Service" onAction="#openService" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnService" text="Service" onAction="#openService" maxWidth="Infinity"
+                        alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-                <Button fx:id="btnRequests" text="Requests" onAction="#openRequests" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnRequests" text="Requests" onAction="#openRequests" maxWidth="Infinity"
+                        alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
-                <Button fx:id="btnNotifications" text="My Messages" onAction="#openNotifications" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                <Button fx:id="btnNotifications" text="My Messages" onAction="#openNotifications" maxWidth="Infinity"
+                        alignment="BASELINE_LEFT"
                         style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 12 20;"/>
             </VBox>
 
@@ -71,29 +77,43 @@
 
                 <HBox spacing="20" alignment="CENTER_LEFT">
                     <VBox style="-fx-background-color: linear-gradient(to right, #3498db, #2980b9); -fx-background-radius: 10; -fx-padding: 20; -fx-min-width: 200;">
-                        <effect><DropShadow color="#00000033" radius="5" offsetY="3"/></effect>
+                        <effect>
+                            <DropShadow color="#00000033" radius="5" offsetY="3"/>
+                        </effect>
                         <Label text="Available Cars" textFill="white" style="-fx-font-size: 14px;"/>
-                        <Label fx:id="totalCarsLabel" text="0" textFill="white" style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
+                        <Label fx:id="totalCarsLabel" text="0" textFill="white"
+                               style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
                     </VBox>
 
-                    <VBox fx:id="revenueCard" style="-fx-background-color: linear-gradient(to right, #2ecc71, #27ae60); -fx-background-radius: 10; -fx-padding: 20; -fx-min-width: 200;">
-                        <effect><DropShadow color="#00000033" radius="5" offsetY="3"/></effect>
+                    <VBox fx:id="revenueCard"
+                          style="-fx-background-color: linear-gradient(to right, #2ecc71, #27ae60); -fx-background-radius: 10; -fx-padding: 20; -fx-min-width: 200;">
+                        <effect>
+                            <DropShadow color="#00000033" radius="5" offsetY="3"/>
+                        </effect>
                         <Label text="Total Revenue (BGN)" textFill="white" style="-fx-font-size: 14px;"/>
-                        <Label fx:id="totalSalesLabel" text="0 лв." textFill="white" style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
+                        <Label fx:id="totalSalesLabel" text="0 лв." textFill="white"
+                               style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
                     </VBox>
 
-                    <VBox fx:id="clientsCard" style="-fx-background-color: linear-gradient(to right, #9b59b6, #8e44ad); -fx-background-radius: 10; -fx-padding: 20; -fx-min-width: 200;">
-                        <effect><DropShadow color="#00000033" radius="5" offsetY="3"/></effect>
+                    <VBox fx:id="clientsCard"
+                          style="-fx-background-color: linear-gradient(to right, #9b59b6, #8e44ad); -fx-background-radius: 10; -fx-padding: 20; -fx-min-width: 200;">
+                        <effect>
+                            <DropShadow color="#00000033" radius="5" offsetY="3"/>
+                        </effect>
                         <Label text="Active Clients" textFill="white" style="-fx-font-size: 14px;"/>
-                        <Label fx:id="totalClientsLabel" text="0" textFill="white" style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
+                        <Label fx:id="totalClientsLabel" text="0" textFill="white"
+                               style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
                     </VBox>
                 </HBox>
 
                 <VBox fx:id="quickActionsBox" spacing="10">
-                    <Label text="Quick Actions" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #7f8c8d; -fx-padding: 20 0 0 0;"/>
+                    <Label text="Quick Actions"
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #7f8c8d; -fx-padding: 20 0 0 0;"/>
                     <HBox spacing="15">
-                        <Button text="Add Car" onAction="#openCars" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20; -fx-cursor: hand;"/>
-                        <Button text="New Sale" onAction="#openSales" style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20; -fx-cursor: hand;"/>
+                        <Button text="Add Car" onAction="#openCars"
+                                style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20; -fx-cursor: hand;"/>
+                        <Button text="New Sale" onAction="#openSales"
+                                style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20; -fx-cursor: hand;"/>
 
                         <Button fx:id="btnReport" text="📄 PDF Report" onAction="#onGenerateReport"
                                 style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20; -fx-cursor: hand;"/>

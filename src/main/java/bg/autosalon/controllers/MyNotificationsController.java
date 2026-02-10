@@ -16,9 +16,12 @@ import java.util.List;
 
 public class MyNotificationsController {
 
-    @FXML private TableView<Notification> notifTable;
-    @FXML private TableColumn<Notification, String> colDate;
-    @FXML private TableColumn<Notification, String> colMessage;
+    @FXML
+    private TableView<Notification> notifTable;
+    @FXML
+    private TableColumn<Notification, String> colDate;
+    @FXML
+    private TableColumn<Notification, String> colMessage;
 
     private final NotificationService service = new NotificationService();
 

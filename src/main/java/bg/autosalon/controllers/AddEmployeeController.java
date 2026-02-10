@@ -11,13 +11,20 @@ import javafx.stage.Stage;
 
 public class AddEmployeeController {
 
-    @FXML private TextField firstNameField;
-    @FXML private TextField lastNameField;
-    @FXML private TextField emailField;
-    @FXML private TextField phoneField;
-    @FXML private PasswordField passwordField;
-    @FXML private TextField salaryField;
-    @FXML private Label errorLabel;
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private TextField salaryField;
+    @FXML
+    private Label errorLabel;
 
     private final EmployeeService employeeService = new EmployeeService();
     private Employee employeeToEdit = null;

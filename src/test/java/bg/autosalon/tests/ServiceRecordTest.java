@@ -4,14 +4,16 @@ import bg.autosalon.entities.Car;
 import bg.autosalon.entities.ServiceRecord;
 import bg.autosalon.enums.ServiceType;
 import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ServiceRecordTest {
 
     @Test
     public void testServiceRecordCreation() {
-        
+
         ServiceRecord record = new ServiceRecord();
         record.setType(ServiceType.REPAIR);
         record.setPrice(150.50);

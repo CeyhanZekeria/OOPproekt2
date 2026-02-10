@@ -16,12 +16,18 @@ import java.io.IOException;
 
 public class ClientListController {
 
-    @FXML private TableView<Client> clientsTable;
-    @FXML private TableColumn<Client, String> colFirstName;
-    @FXML private TableColumn<Client, String> colLastName;
-    @FXML private TableColumn<Client, String> colEmail;
-    @FXML private TableColumn<Client, String> colPhone;
-    @FXML private TableColumn<Client, Integer> colPoints;
+    @FXML
+    private TableView<Client> clientsTable;
+    @FXML
+    private TableColumn<Client, String> colFirstName;
+    @FXML
+    private TableColumn<Client, String> colLastName;
+    @FXML
+    private TableColumn<Client, String> colEmail;
+    @FXML
+    private TableColumn<Client, String> colPhone;
+    @FXML
+    private TableColumn<Client, Integer> colPoints;
 
     private final ClientService clientService = new ClientService();
 
