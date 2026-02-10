@@ -11,7 +11,19 @@ import java.util.List;
 
 public class CarService {
 
-    private final CarDao carDao = new CarDao();
+
+    private final CarDao carDao;
+
+
+    public CarService() {
+        this.carDao = new CarDao();
+    }
+
+
+    public CarService(CarDao carDao) {
+        this.carDao = carDao;
+    }
+
 
     public void addCar(Car car) {
         car.setStatus(CarStatus.AVAILABLE);
@@ -37,6 +49,8 @@ public class CarService {
         }
     }
 
+
+
     public Car getCar(Long id) {
         return carDao.findById(id);
     }
@@ -51,4 +65,6 @@ public class CarService {
             carDao.delete(car);
         }
     }
+
+
 }
