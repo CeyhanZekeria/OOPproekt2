@@ -16,9 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -45,9 +44,9 @@ public class CarListController {
     @FXML private Button btnEdit;
     @FXML private Button btnDelete;
     @FXML private Button btnRequest;
+    @FXML private Button btnHistory;
 
     private final CarService carService = new CarService();
-
     private final RequestService requestService = new RequestService();
 
     private ObservableList<Car> allCars;
@@ -74,25 +73,23 @@ public class CarListController {
     private void checkPermissions() {
         User currentUser = SessionManager.getCurrentUser();
 
+
         setButtonVisible(btnAdd, false);
         setButtonVisible(btnEdit, false);
         setButtonVisible(btnDelete, false);
         setButtonVisible(btnRequest, false);
+        setButtonVisible(btnHistory, false);
 
         if (currentUser != null) {
             if (currentUser.getRole() == UserRole.CLIENT) {
+
                 setButtonVisible(btnRequest, true);
-            } else if (currentUser.getRole() == UserRole.ADMIN){
+            } else {
 
                 setButtonVisible(btnAdd, true);
                 setButtonVisible(btnEdit, true);
                 setButtonVisible(btnDelete, true);
-                setButtonVisible(btnRequest,true);
-            } else if (currentUser.getRole() == UserRole.SELLER) {
-
-                setButtonVisible(btnAdd, true);
-                setButtonVisible(btnEdit, true);
-                setButtonVisible(btnDelete, true);
+                setButtonVisible(btnHistory, true);
             }
         }
     }
@@ -114,16 +111,14 @@ public class CarListController {
         }
 
         User currentUser = SessionManager.getCurrentUser();
-
         if (!(currentUser instanceof Client)) {
             showAlert(Alert.AlertType.ERROR, "Only clients can request test drives!");
             return;
         }
 
-
         Dialog<LocalDate> dialog = new Dialog<>();
         dialog.setTitle("Schedule Test Drive");
-        dialog.setHeaderText("Request test drive for: " + selectedCar.getBrand() + " " + selectedCar.getModel());
+        dialog.setHeaderText("Request test drive for: " + selectedCar.getBrand());
 
         ButtonType typeOk = new ButtonType("Send Request", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(typeOk, ButtonType.CANCEL);
@@ -143,7 +138,7 @@ public class CarListController {
                 TestDriveRequest request = new TestDriveRequest();
                 request.setCar(selectedCar);
                 request.setClient((Client) currentUser);
-                request.setRequestDate(LocalDateTime.of(date, LocalTime.of(10, 10)));
+                request.setRequestDate(LocalDateTime.of(date, LocalTime.of(10, 0)));
 
                 requestService.createRequest(request);
 
@@ -155,6 +150,31 @@ public class CarListController {
         });
     }
 
+
+    @FXML
+    public void onHistory() {
+        Car selectedCar = carsTable.getSelectionModel().getSelectedItem();
+        if (selectedCar == null) {
+            showAlert(Alert.AlertType.WARNING, "Please select a car first!");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/car_history.fxml"));
+            Parent root = loader.load();
+
+            CarHistoryController controller = loader.getController();
+            controller.setCar(selectedCar);
+
+            Stage stage = new Stage();
+            stage.setTitle("Vehicle History Report");
+            stage.setScene(new Scene(root, 600, 500));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Could not load history view.");
+        }
+    }
 
 
     private void loadCars() {

@@ -22,8 +22,12 @@ public class ServiceRecord {
 
     private String description;
 
-    public ServiceRecord() {
 
+    @Column(nullable = true)
+    private Double price;
+
+
+    public ServiceRecord() {
     }
 
     public Long getId() {
@@ -64,5 +68,14 @@ public class ServiceRecord {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public double getPrice() {
+        return price == null ? 0.0 : price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
