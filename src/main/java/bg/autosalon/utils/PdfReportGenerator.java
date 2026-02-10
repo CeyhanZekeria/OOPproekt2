@@ -40,7 +40,7 @@ public class PdfReportGenerator {
 
 
         document.add(new Paragraph("Car Sales Revenue", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14)));
-        document.add(new Paragraph(" ")); // Празен ред
+        document.add(new Paragraph(" "));
 
         PdfPTable salesTable = new PdfPTable(4);
         salesTable.setWidthPercentage(100);
@@ -91,9 +91,9 @@ public class PdfReportGenerator {
         document.add(serviceTotalPara);
 
 
-        document.add(new Paragraph("------------------------------------------------"));
+
         Font grandTotalFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16, BaseColor.DARK_GRAY);
-        Paragraph grandTotal = new Paragraph("GRAND TOTAL REVENUE: " + String.format("%.2f BGN", totalSales + totalService), grandTotalFont);
+        Paragraph grandTotal = new Paragraph("TOTAL REVENUE: " + String.format("%.2f BGN", totalSales + totalService), grandTotalFont);
         grandTotal.setAlignment(Element.ALIGN_RIGHT);
         document.add(grandTotal);
 

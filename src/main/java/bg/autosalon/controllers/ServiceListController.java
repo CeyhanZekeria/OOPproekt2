@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class ServiceListController {
@@ -20,19 +19,21 @@ public class ServiceListController {
     @FXML private TableColumn<ServiceRecord, String> colCar;
     @FXML private TableColumn<ServiceRecord, String> colType;
     @FXML private TableColumn<ServiceRecord, String> colDate;
+    @FXML private TableColumn<ServiceRecord, String> colPrice;
     @FXML private TableColumn<ServiceRecord, String> colDesc;
 
     private final ServiceRecordService serviceService = new ServiceRecordService();
 
     @FXML
     public void initialize() {
-        colCar.setCellValueFactory(cell -> new SimpleStringProperty(
-                cell.getValue().getCar().getBrand() + " " + cell.getValue().getCar().getModel()));
-
+        colCar.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCar().getBrand() + " " + cell.getValue().getCar().getModel()));
         colType.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getType().toString()));
         colDate.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDate().toString()));
-        colDesc.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDescription()));
 
+
+        colPrice.setCellValueFactory(cell -> new SimpleStringProperty(String.format("%.2f BGN", cell.getValue().getPrice())));
+
+        colDesc.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDescription()));
         loadRecords();
     }
 
@@ -40,33 +41,24 @@ public class ServiceListController {
         serviceTable.setItems(FXCollections.observableArrayList(serviceService.getAllRecords()));
     }
 
-    @FXML
-    public void onAddService() {
-        openServiceForm(null);
-    }
+    @FXML public void onAddService() { openServiceForm(null); }
 
-    @FXML
-    public void onEditService() {
+    @FXML public void onEditService() {
         ServiceRecord selected = serviceTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Please select a record to edit!");
+            showAlert(Alert.AlertType.WARNING, "Please select a record!");
             return;
         }
         openServiceForm(selected);
     }
 
-    @FXML
-    public void onDeleteService() {
+    @FXML public void onDeleteService() {
         ServiceRecord selected = serviceTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Please select a record to delete!");
+            showAlert(Alert.AlertType.WARNING, "Please select a record!");
             return;
         }
-
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle("Confirm Delete");
-        confirm.setContentText("Delete this service record?");
-
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Delete this record?", ButtonType.OK, ButtonType.CANCEL);
         if (confirm.showAndWait().get() == ButtonType.OK) {
             try {
                 serviceService.deleteRecord(selected.getId());
@@ -81,27 +73,19 @@ public class ServiceListController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/bg/autosalon/views/add_service.fxml"));
             Parent root = loader.load();
-
             if (recordToEdit != null) {
-                AddServiceController controller = loader.getController();
-                controller.setRecordToEdit(recordToEdit);
+                loader.<AddServiceController>getController().setRecordToEdit(recordToEdit);
             }
-
             Stage stage = new Stage();
-            stage.setTitle(recordToEdit == null ? "New Service Appointment" : "Edit Service");
+            stage.setTitle(recordToEdit == null ? "New Service" : "Edit Service");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-
             loadRecords();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) { e.printStackTrace(); }
     }
 
     private void showAlert(Alert.AlertType type, String message) {
-        Alert alert = new Alert(type);
-        alert.setContentText(message);
-        alert.showAndWait();
+        new Alert(type, message).showAndWait();
     }
 }
