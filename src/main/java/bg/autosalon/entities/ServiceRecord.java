@@ -23,59 +23,25 @@ public class ServiceRecord {
     private String description;
 
 
-    @Column(nullable = true)
-    private Double price;
+    private double price;
 
+    public ServiceRecord() {}
 
-    public ServiceRecord() {
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public Car getCar() { return car; }
+    public void setCar(Car car) { this.car = car; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public ServiceType getType() { return type; }
+    public void setType(ServiceType type) { this.type = type; }
 
-    public Car getCar() {
-        return car;
-    }
+    public LocalDate getDate() { return date; }
+    public void setDate(LocalDate date) { this.date = date; }
 
-    public void setCar(Car car) {
-        this.car = car;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public ServiceType getType() {
-        return type;
-    }
-
-    public void setType(ServiceType type) {
-        this.type = type;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    public double getPrice() {
-        return price == null ? 0.0 : price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 }
