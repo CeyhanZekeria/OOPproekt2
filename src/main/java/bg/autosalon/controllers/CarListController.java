@@ -4,6 +4,7 @@ import bg.autosalon.entities.Car;
 import bg.autosalon.entities.Client;
 import bg.autosalon.entities.TestDriveRequest;
 import bg.autosalon.entities.User;
+import bg.autosalon.enums.CarStatus;
 import bg.autosalon.enums.UserRole;
 import bg.autosalon.services.CarService;
 import bg.autosalon.services.RequestService;
@@ -28,23 +29,37 @@ import java.util.stream.Collectors;
 
 public class CarListController {
 
-    @FXML private TextField searchField;
-    @FXML private TableView<Car> carsTable;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private TableView<Car> carsTable;
 
-    @FXML private TableColumn<Car, String> colBrand;
-    @FXML private TableColumn<Car, String> colModel;
-    @FXML private TableColumn<Car, String> colVin;
-    @FXML private TableColumn<Car, String> colYear;
-    @FXML private TableColumn<Car, String> colFuel;
-    @FXML private TableColumn<Car, String> colPrice;
-    @FXML private TableColumn<Car, String> colStatus;
+    @FXML
+    private TableColumn<Car, String> colBrand;
+    @FXML
+    private TableColumn<Car, String> colModel;
+    @FXML
+    private TableColumn<Car, String> colVin;
+    @FXML
+    private TableColumn<Car, String> colYear;
+    @FXML
+    private TableColumn<Car, String> colFuel;
+    @FXML
+    private TableColumn<Car, String> colPrice;
+    @FXML
+    private TableColumn<Car, String> colStatus;
 
 
-    @FXML private Button btnAdd;
-    @FXML private Button btnEdit;
-    @FXML private Button btnDelete;
-    @FXML private Button btnRequest;
-    @FXML private Button btnHistory;
+    @FXML
+    private Button btnAdd;
+    @FXML
+    private Button btnEdit;
+    @FXML
+    private Button btnDelete;
+    @FXML
+    private Button btnRequest;
+    @FXML
+    private Button btnHistory;
 
     private final CarService carService = new CarService();
     private final RequestService requestService = new RequestService();
@@ -107,6 +122,15 @@ public class CarListController {
         Car selectedCar = carsTable.getSelectionModel().getSelectedItem();
         if (selectedCar == null) {
             showAlert(Alert.AlertType.WARNING, "Please select a car first!");
+            return;
+        }
+
+        if (selectedCar.getStatus() == CarStatus.SOLD) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Unavailable");
+            alert.setHeaderText("Car is SOLD!");
+            alert.setContentText("Sorry, this vehicle has already been sold.\nYou cannot request a test drive.");
+            alert.showAndWait();
             return;
         }
 
@@ -196,14 +220,19 @@ public class CarListController {
         carsTable.setItems(FXCollections.observableArrayList(filtered));
     }
 
-    @FXML public void onAddCar() { openCarForm(null); }
+    @FXML
+    public void onAddCar() {
+        openCarForm(null);
+    }
 
-    @FXML public void onEditCar() {
+    @FXML
+    public void onEditCar() {
         Car selected = carsTable.getSelectionModel().getSelectedItem();
         if (selected != null) openCarForm(selected);
     }
 
-    @FXML public void onDeleteCar() {
+    @FXML
+    public void onDeleteCar() {
         Car selected = carsTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             carService.deleteCar(selected.getId());
@@ -223,7 +252,9 @@ public class CarListController {
             stage.setScene(new Scene(root));
             stage.showAndWait();
             loadCars();
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(Alert.AlertType type, String message) {

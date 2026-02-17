@@ -16,12 +16,18 @@ import java.io.IOException;
 
 public class SaleListController {
 
-    @FXML private TableView<Sale> salesTable;
-    @FXML private TableColumn<Sale, String> colCar;
-    @FXML private TableColumn<Sale, String> colClient;
-    @FXML private TableColumn<Sale, String> colEmployee;
-    @FXML private TableColumn<Sale, String> colDate;
-    @FXML private TableColumn<Sale, String> colPrice;
+    @FXML
+    private TableView<Sale> salesTable;
+    @FXML
+    private TableColumn<Sale, String> colCar;
+    @FXML
+    private TableColumn<Sale, String> colClient;
+    @FXML
+    private TableColumn<Sale, String> colEmployee;
+    @FXML
+    private TableColumn<Sale, String> colDate;
+    @FXML
+    private TableColumn<Sale, String> colPrice;
 
     private final SaleService saleService = new SaleService();
 

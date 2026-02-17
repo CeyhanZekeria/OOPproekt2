@@ -27,7 +27,8 @@ public class User {
     @Column(nullable = false)
     private UserRole role;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String firstName, String lastName, String email, String password, String phone, UserRole role) {
         this.firstName = firstName;
@@ -37,7 +38,6 @@ public class User {
         this.phone = phone;
         this.role = role;
     }
-
 
 
     public Long getId() {

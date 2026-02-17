@@ -10,13 +10,20 @@ import javafx.scene.control.*;
 
 public class RegisterController {
 
-    @FXML private TextField firstNameField;
-    @FXML private TextField lastNameField;
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private TextField phoneField;
-    @FXML private Label errorLabel;
-    @FXML private Label successLabel;
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private Label successLabel;
 
     private final UserService userService = new UserService();
 

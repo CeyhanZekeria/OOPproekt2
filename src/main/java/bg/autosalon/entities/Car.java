@@ -33,7 +33,8 @@ public class Car {
     @Enumerated(EnumType.STRING)
     private CarStatus status = CarStatus.AVAILABLE;
 
-    public Car() {}
+    public Car() {
+    }
 
     public Long getId() {
         return id;

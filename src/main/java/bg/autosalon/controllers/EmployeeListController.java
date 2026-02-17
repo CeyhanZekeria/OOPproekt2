@@ -16,12 +16,18 @@ import java.io.IOException;
 
 public class EmployeeListController {
 
-    @FXML private TableView<Employee> employeesTable;
-    @FXML private TableColumn<Employee, String> colFirstName;
-    @FXML private TableColumn<Employee, String> colLastName;
-    @FXML private TableColumn<Employee, String> colEmail;
-    @FXML private TableColumn<Employee, String> colPhone;
-    @FXML private TableColumn<Employee, String> colSalary;
+    @FXML
+    private TableView<Employee> employeesTable;
+    @FXML
+    private TableColumn<Employee, String> colFirstName;
+    @FXML
+    private TableColumn<Employee, String> colLastName;
+    @FXML
+    private TableColumn<Employee, String> colEmail;
+    @FXML
+    private TableColumn<Employee, String> colPhone;
+    @FXML
+    private TableColumn<Employee, String> colSalary;
 
     private final EmployeeService employeeService = new EmployeeService();
 

@@ -5,6 +5,7 @@ import bg.autosalon.entities.Car;
 import bg.autosalon.services.CarService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CarServiceTest {

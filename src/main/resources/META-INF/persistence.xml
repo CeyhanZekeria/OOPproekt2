@@ -9,7 +9,8 @@
     <persistence-unit name="autosalonPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>bg.autosalon.entities.TestDriveRequest</class> <class>bg.autosalon.entities.User</class>
+        <class>bg.autosalon.entities.TestDriveRequest</class>
+        <class>bg.autosalon.entities.User</class>
         <class>bg.autosalon.entities.Car</class>
         <class>bg.autosalon.entities.Client</class>
         <class>bg.autosalon.entities.Employee</class>

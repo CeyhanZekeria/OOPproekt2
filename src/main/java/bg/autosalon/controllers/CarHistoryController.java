@@ -12,24 +12,34 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class CarHistoryController {
 
-    @FXML private Label carTitleLabel;
+    @FXML
+    private Label carTitleLabel;
 
 
-    @FXML private TableView<Sale> salesTable;
-    @FXML private TableColumn<Sale, String> colSaleDate;
-    @FXML private TableColumn<Sale, String> colClient;
-    @FXML private TableColumn<Sale, String> colPrice;
+    @FXML
+    private TableView<Sale> salesTable;
+    @FXML
+    private TableColumn<Sale, String> colSaleDate;
+    @FXML
+    private TableColumn<Sale, String> colClient;
+    @FXML
+    private TableColumn<Sale, String> colPrice;
 
 
-    @FXML private TableView<ServiceRecord> serviceTable;
-    @FXML private TableColumn<ServiceRecord, String> colServiceDate;
-    @FXML private TableColumn<ServiceRecord, String> colDescription;
-    @FXML private TableColumn<ServiceRecord, String> colServicePrice;
+    @FXML
+    private TableView<ServiceRecord> serviceTable;
+    @FXML
+    private TableColumn<ServiceRecord, String> colServiceDate;
+    @FXML
+    private TableColumn<ServiceRecord, String> colDescription;
+    @FXML
+    private TableColumn<ServiceRecord, String> colServicePrice;
 
     private Car selectedCar;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

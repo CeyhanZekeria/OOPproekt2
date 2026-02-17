@@ -15,11 +15,16 @@ import java.time.format.DateTimeFormatter;
 
 public class RequestListController {
 
-    @FXML private TableView<TestDriveRequest> requestsTable;
-    @FXML private TableColumn<TestDriveRequest, String> colClient;
-    @FXML private TableColumn<TestDriveRequest, String> colCar;
-    @FXML private TableColumn<TestDriveRequest, String> colDate;
-    @FXML private TableColumn<TestDriveRequest, String> colStatus;
+    @FXML
+    private TableView<TestDriveRequest> requestsTable;
+    @FXML
+    private TableColumn<TestDriveRequest, String> colClient;
+    @FXML
+    private TableColumn<TestDriveRequest, String> colCar;
+    @FXML
+    private TableColumn<TestDriveRequest, String> colDate;
+    @FXML
+    private TableColumn<TestDriveRequest, String> colStatus;
 
     private final RequestService requestService = new RequestService();
 

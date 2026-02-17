@@ -12,14 +12,22 @@ import javafx.stage.Stage;
 
 public class AddCarController {
 
-    @FXML private TextField brandField;
-    @FXML private TextField modelField;
-    @FXML private TextField vinField;
-    @FXML private TextField yearField;
-    @FXML private TextField mileageField;
-    @FXML private TextField priceField;
-    @FXML private ComboBox<FuelType> fuelComboBox;
-    @FXML private Label errorLabel;
+    @FXML
+    private TextField brandField;
+    @FXML
+    private TextField modelField;
+    @FXML
+    private TextField vinField;
+    @FXML
+    private TextField yearField;
+    @FXML
+    private TextField mileageField;
+    @FXML
+    private TextField priceField;
+    @FXML
+    private ComboBox<FuelType> fuelComboBox;
+    @FXML
+    private Label errorLabel;
 
     private final CarService carService = new CarService();
     private Car carToEdit = null;

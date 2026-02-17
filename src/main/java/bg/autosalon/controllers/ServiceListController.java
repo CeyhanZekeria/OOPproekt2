@@ -11,16 +11,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class ServiceListController {
 
-    @FXML private TableView<ServiceRecord> serviceTable;
-    @FXML private TableColumn<ServiceRecord, String> colCar;
-    @FXML private TableColumn<ServiceRecord, String> colType;
-    @FXML private TableColumn<ServiceRecord, String> colDate;
-    @FXML private TableColumn<ServiceRecord, String> colPrice;
-    @FXML private TableColumn<ServiceRecord, String> colDesc;
+    @FXML
+    private TableView<ServiceRecord> serviceTable;
+    @FXML
+    private TableColumn<ServiceRecord, String> colCar;
+    @FXML
+    private TableColumn<ServiceRecord, String> colType;
+    @FXML
+    private TableColumn<ServiceRecord, String> colDate;
+    @FXML
+    private TableColumn<ServiceRecord, String> colPrice;
+    @FXML
+    private TableColumn<ServiceRecord, String> colDesc;
 
     private final ServiceRecordService serviceService = new ServiceRecordService();
 
@@ -41,9 +48,13 @@ public class ServiceListController {
         serviceTable.setItems(FXCollections.observableArrayList(serviceService.getAllRecords()));
     }
 
-    @FXML public void onAddService() { openServiceForm(null); }
+    @FXML
+    public void onAddService() {
+        openServiceForm(null);
+    }
 
-    @FXML public void onEditService() {
+    @FXML
+    public void onEditService() {
         ServiceRecord selected = serviceTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showAlert(Alert.AlertType.WARNING, "Please select a record!");
@@ -52,7 +63,8 @@ public class ServiceListController {
         openServiceForm(selected);
     }
 
-    @FXML public void onDeleteService() {
+    @FXML
+    public void onDeleteService() {
         ServiceRecord selected = serviceTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showAlert(Alert.AlertType.WARNING, "Please select a record!");
@@ -82,7 +94,9 @@ public class ServiceListController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             loadRecords();
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(Alert.AlertType type, String message) {

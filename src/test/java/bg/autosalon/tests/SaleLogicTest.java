@@ -4,6 +4,7 @@ import bg.autosalon.entities.Car;
 import bg.autosalon.entities.Client;
 import bg.autosalon.enums.CarStatus;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SaleLogicTest {
@@ -27,7 +28,6 @@ public class SaleLogicTest {
 
     @Test
     public void testLoyaltyPointsCalculation() {
-
 
 
         Client client = new Client();

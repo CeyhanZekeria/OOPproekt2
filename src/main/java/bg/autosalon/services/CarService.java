@@ -50,7 +50,6 @@ public class CarService {
     }
 
 
-
     public Car getCar(Long id) {
         return carDao.findById(id);
     }
