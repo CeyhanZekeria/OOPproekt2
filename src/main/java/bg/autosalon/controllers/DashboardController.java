@@ -129,6 +129,7 @@ public class DashboardController {
             hideElement(clientsCard);
             hideElement(quickActionsBox);
             hideElement(btnReport);
+            hideElement(btnService);
         } else {
             hideElement(btnNotifications);
             if (loggedUser.getRole() == UserRole.SELLER) {

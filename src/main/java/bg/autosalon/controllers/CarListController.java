@@ -4,6 +4,7 @@ import bg.autosalon.entities.Car;
 import bg.autosalon.entities.Client;
 import bg.autosalon.entities.TestDriveRequest;
 import bg.autosalon.entities.User;
+import bg.autosalon.enums.CarStatus;
 import bg.autosalon.enums.UserRole;
 import bg.autosalon.services.CarService;
 import bg.autosalon.services.RequestService;
@@ -121,6 +122,15 @@ public class CarListController {
         Car selectedCar = carsTable.getSelectionModel().getSelectedItem();
         if (selectedCar == null) {
             showAlert(Alert.AlertType.WARNING, "Please select a car first!");
+            return;
+        }
+
+        if (selectedCar.getStatus() == CarStatus.SOLD) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Unavailable");
+            alert.setHeaderText("Car is SOLD!");
+            alert.setContentText("Sorry, this vehicle has already been sold.\nYou cannot request a test drive.");
+            alert.showAndWait();
             return;
         }
 

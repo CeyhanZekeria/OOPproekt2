@@ -2,6 +2,7 @@ package bg.autosalon.services;
 
 import bg.autosalon.config.HibernateUtil;
 import bg.autosalon.entities.TestDriveRequest;
+import bg.autosalon.enums.CarStatus;
 import bg.autosalon.enums.RequestStatus;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -13,6 +14,12 @@ public class RequestService {
 
 
     public void createRequest(TestDriveRequest request) {
+
+        if (request.getCar().getStatus() == CarStatus.SOLD){
+            throw new IllegalStateException("This car is already SOLD!");
+
+        }
+
         request.setStatus(RequestStatus.PENDING);
 
         EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
@@ -24,6 +31,7 @@ public class RequestService {
         } catch (Exception e) {
             if (transaction.isActive()) transaction.rollback();
             e.printStackTrace();
+            throw e;
         } finally {
             em.close();
         }
